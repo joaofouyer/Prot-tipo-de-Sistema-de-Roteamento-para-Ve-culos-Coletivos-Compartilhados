@@ -1,0 +1,52 @@
+\makeatletter
+\renewcommand{\ALG@name}{Algoritmo}
+\makeatother
+\renewcommand{\listalgorithmname}{Lista de Algoritmos}
+
+\algrenewcommand\algorithmicend{\textbf{fim}}
+\algrenewcommand\algorithmicdo{\textbf{faça}}
+\algrenewcommand\algorithmicwhile{\textbf{enquanto}}
+\algrenewcommand\algorithmicfor{\textbf{para}}
+\algrenewcommand\algorithmicif{\textbf{se}}
+\algrenewcommand\algorithmicthen{\textbf{então}}
+\algrenewcommand\algorithmicelse{\textbf{senão}}
+\algrenewcommand\algorithmicreturn{\textbf{devolve}}
+\algrenewcommand\algorithmicfunction{\textbf{função}}
+\algrenewtext{EndWhile}{\algorithmicend\ \algorithmicwhile}
+\algrenewtext{EndFor}{\algorithmicend\ \algorithmicfor}
+\algrenewtext{EndIf}{\algorithmicend\ \algorithmicif}
+\algrenewtext{EndFunction}{\algorithmicend\ \algorithmicfunction}
+\algnewcommand\algorithmicto{\textbf{até}}
+\algrenewtext{For}[3]%
+{\algorithmicfor\ #1 $\gets$ #2 \algorithmicto\ #3 \algorithmicdo}
+\begin{algorithm}
+\caption{Pseudocódigo da busca tabu \cite[p. 89]{goldbarg}} 
+\begin{algorithmic}[1]
+\item \textbf{gerar} uma solução inicial \emph{s}, e fazer \emph{s}* := \emph{s}
+\item \textbf{inicializar} a Lista Tabu (T)
+\item \textbf{inicializar} contadores \emph{p} e \em{q}
+
+\While{$p \neq p_{max}$ e $q \neq q_{max} $}
+    \State \textbf{selecionar} o melhor vizinho $s' \in N(s) \setminus T$ 
+    \State \textbf{selecionar} o melhor vizinho $s'' \in N(s) \cap T$ 
+    \State \If{$f(s'') < f(s') $ e $f(s'') < f(s^*)$}
+    \State {$s' \gets s''$}  \Comment{Aspiração} 
+    \EndIf
+    
+    \State \If{$f(s') < f(s^*)$}
+    \State {$s^* \gets s'$}
+    \State {$q \gets 0$}
+    \EndIf
+    
+    \State \If{$f(s') < f(s)$}
+    \State \textbf{colocar} o movimento inverso $(s', s)$ na lista \emph{T}
+    \State \textbf{atualizar} \emph{T}
+    \EndIf
+    
+    \State{$s \gets s'$}
+    \State{$p \gets p+1$}
+    \State{$q \gets q+1$}
+\EndWhile
+\item \textbf{Devolver} a solução \emph{s}*
+\end{algorithmic}
+\end{algorithm}

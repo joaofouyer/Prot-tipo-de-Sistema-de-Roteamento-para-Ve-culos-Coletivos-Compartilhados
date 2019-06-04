@@ -1,0 +1,122 @@
+\chapter{Introdução}
+O tempo gasto no trânsito para a locomoção diária é um grande problema para os habitantes que residem em grandes metrópoles. Na região metropolitana de São Paulo, por exemplo, o congestionamento e o tempo gasto no trânsito é a quarto problema mais citado pelos cidadãos \cite{viveremsp}. Além disto, o transporte público se mostra ineficiente e causa desgaste para seus passageiros frequentes, sendo o quinto problema com o maior número de queixas \cite{mobilize}. Com pouca manutenção, muitas vezes os veículos da Grande São Paulo falham em oferecer uma boa experiência de locomoção para seus usuários, principalmente por causa da superlotação nos horários de pico e da falta de conforto dos veículos \cite{viveremsp}.
+
+Além do problema enfrentado pelos passageiros, o Poder Público também tem o desafio de minimizar os gastos com a Secretaria de Transportes Metropolitanos ao passo que precisa diminuir o trânsito da cidade. Nos últimos anos, novas formas de locomoção foram incorporadas no cotidiano do paulistano a partir de iniciativas privadas ou de parcerias público-privadas (PPP) com ajuda da tecnologia digital, como por exemplo os aplicativos de carona, compartilhamento de bicicletas e patinetes elétricos e o fretamento privado de veículos coletivos -- como ônibus e vans. 
+
+
+A evolução da tecnologia da informação, sobretudo da tecnologia móvel, desempenha um papel importante na viabilidade destes serviços, permitindo a interação entre o fornecedor e o consumidor mesmo que não se conheçam. Nos aplicativos de carona, por exemplo, passageiros e motoristas que nunca se viram conseguem ser conectados em tempo real graças à popularização dos \emph{smartphones} e da Internet móvel. 
+
+% Acreditamos que a tecnologia da informação pode nos forneceer aidna mais dados e nos ajudar a conectar diferentes passageiros para compartilhar o mesmo veículo, diminuindo o trânsito e diluindo o custo entre os passageiros.
+
+\section{Motivação}
+
+O congestionamento na locomoção urbana nas grandes metrópoles tornou-se um problema para seus habitantes e um desafio para gestores públicos. A duração total do deslocamento diário na cidade de São Paulo vem diminuindo nos últimos anos, junto com a utilização de transporte coletivo, reforçando a percepção é de que medidas provisórias são adotadas como paliativo para problemas do transporte público que nunca são resolvidos.
+\begin{quote}
+Mesmo com sensível redução nos tempos de deslocamento dentro da cidade, as demandas por melhorias na lotação e no conforto; nos tempos de espera e de viagem de transporte coletivo permanecem latentes, geram descontentamento e impactam diretamente a avaliação do sistema de transporte público da cidade e na disposição em utilizá-lo.
+\end{quote}
+\rightline{\cite[p. 36]{viveremsp}}
+
+O transporte coletivo surge com diversos benefícios, como por exemplo uma alternativa que visa diminuir os problemas de congestionamento e os custos com combustível. Entretanto, alguns desafios dificultam ampla adoção de transporte coletivo, como o conforto que o veículo individual oferece ao acesso \emph{door-to-door} \cite{FURUHATA201328}, e a oferta e qualidade dos serviços de transporte público.
+
+Um sistema de roteamento e de compartilhamento de veículos oferece a capacidade de minimizar a quantidade de assentos livres em um veículo com o objetivo de diminuir o número de veículos utilizados no transporte de passageiros e consequentemente o congestionamento nas grandes cidades. \cite{MOURAD2019323}
+
+Paulistanos levam, em média, 1h57 no deslocamento diário para realizar a principal atividade do dia, como por exemplo o trabalho, escola ou faculdade. Considerando apenas passageiros de transporte público, este tempo sobe para 2h08. Caso todas as atividades do dia sejam consideradas, a média da duração de deslocamento aumenta para 2h43 no geral, e 2h57 para usuários de transporte público \cite{viveremsp}. A atual configuração da mobilidade urbana também força passageiros a utilizarem mais de um modal em cada viagem, aumentando o cansaço dos seus usuários frequentes.
+
+Outro desafio no planejamento urbano é atualizar as rotas e a frequência do transporte público conforme a demanda de um destino for alterado. Em média, o tempo de espera por um ônibus municipal na cidade de São Paulo é de 18 minutos \cite{viveremsp}, sendo a principal preocupação entre as pessoas que não utilizam o transporte, junto à superlotação e a alta tarifa pelo serviço prestado. A falta de planejamento em melhorar os problemas existentes no transporte coletivo, expõe em comparação a pesquisa dos anos anteriores, que não há mudanças significativas no transporte, configurando uma das causas dos altos custos operacionais e mantendo o descaso com seus usuários. \cite{viveremsp}.
+
+A evolução da tecnologia da informação, sobretudo da tecnologia móvel e da Internet das Coisas \emph{(IoT)}, possibilita que ferramentas auxiliares sejam utilizadas para coletar dados e realizar um planejamento mais adequado para transporte coletivo. Desta forma, rotas ociosas poderiam ser alteradas para diminuir a duração total do trajeto e diminuir os custos de operação, assim como novas rotas poderiam ser criadas para atender demandas existentes e melhorar a abrangência do serviço ofertado. Com ajuda das soluções tecnológicas já existentes como \emph{Google Maps} e \emph{Waze}, é possível ampliar as funcionalidades que um simples \emph{GPS} pode proporcionar, fazendo com que a rota seja calculada para atender não só uma pessoa individual, mas várias delas ao mesmo tempo, levando em consideração o deslocamento e tempo de viagem.
+
+% Inserir parte da introdução do livro de otimização combinatória e mh
+
+Visando melhorar o transporte coletivo de pessoas em uma área urbana como São Paulo, o objetivo do presente trabalho é aplicar algoritmos de roteamento de veículos com o objetivo de criar e melhorar suas rotas a fim de minimizar a distância total percorrida por um veículo, a duração total de locomoção dos seus passageiros, maximizar quantidade de pessoas por veículo visando diminuir a quantidade de veículos necessários para o transporte dos usuários, diminuindo consequentemente o custo para o transporte destes passageiros e a caminhada necessária entre os locais de origem e destino e os pontos de embarque e desembarque, respeitando a capacidade do veículo e visando que o passageiro fique sentado durante toda a viagem.
+
+
+O roteamento e a ordem entre os pontos de embarque e os pontos de desembarque será baseado no algoritmo do caixeiro viajante, enquanto a estimativa da duração do trajeto será definida consultando a API do \emph{Google Maps} pois espera-se levar em consideração o tráfego e a mobilidade do passageiro, como, por exemplo, o conforto de realizar uma viagem do começo ao fim utilizando um único veículo. A organização entre usuários e veículos coletivos é essencial para que haja uma melhoria no sistema já existente, assim como o planejamento de rotas, que se dará por meio das técnicas escolhidas.
+
+
+\section{Objetivos}
+% Como algoritmos de roteamento podem auxiliar as rotas de veículos coletivos compartilhados na locomoção da Grande São Paulo?
+
+A pesquisa é pautada em desenvolver um protótipo capaz de criar e adaptar rotas para veículos coletivos compartilhados a fim de maximizar o número de passageiros por veículo, levando em consideração o tempo e deslocamento que cada passageiro levará para completar o trajeto. Desta forma, o projeto tem como proposta agrupar passageiros que têm áreas de interesses convergentes, criar a rota de acordo com a origem e destino prezando o tempo e a locomoção de cada passageiro e a capacidade do veículo.
+
+\subsection{Objetivo Geral}
+Desenvolver um protótipo de sistema de roteamento para veículos coletivos compartilhados. A ordem e o roteamento dos pontos de embarque e desembarque será definida baseada no algoritmo do caixeiro viajante enquanto a estimativa da duração da viagem será feita através de uma consulta à API do \emph{Google Maps} pois levará em consideração tanto a distância quanto uma estimativa do tráfego nas vias.
+
+
+\subsection{Objetivos Específicos}
+Nos objetivos específicos deste trabalho pretende-se:
+\begin{itemize}
+    \item Geocodificar endereços de origem e destino;
+    
+    \item Geocodificar pontos de embarque e desembarque;
+    
+    \item Agrupar passageiros que possam convergir em uma rota através de métodos de \emph{clusterização}, a fim de maximizar o número de pessoas por viagem e respeitando a capacidade do veículo;
+    
+    \item Indicar os pontos de embarque e desembarque de cada passageiro respeitando o limite máximo de deslocamento necessário a partir da origem/destino até o ponto de embarque e a partir do ponto de desembarque até a origem/destino;
+    
+    \item Ordenar os pontos de embarque e desembarque utilizando Caixeiro Viajante como base a fim de diminuir o tempo do trajeto e a distância percorrida pelo veículo;
+    
+    \item Formular um protótipo para buscar a distância e o tempo de deslocamento real entre os pontos de embarque e desembarque;
+    
+    \item Definir os horários de embarque e desembarque dos pontos de acordo com a estimativa de tempo, respeitando a janela de horário de cada passageiro;
+    
+    \item Atualizar e adequar a rota de acordo com entrada e a saída de passageiros.
+    
+    \item Validar o modelo desenvolvido por meio de método computacional, em um problema real.
+    
+\end{itemize}
+
+% O estudo se baseará na utilização de sistemas de geoposicionamento para agrupar passageiros com origens e destinos semelhantes e de métodos heurísticos para definir a ordem e o caminho dos pontos de embarque e desembarque.
+
+\section{Justificativa}
+Por que São Paulo?
+
+\section{Delimitação do Problema}
+O estudo do modelo de solução do problema considera apenas a região da Grande São Paulo, ignorando tanto restrições físicas -- como a inviabilidade de um veículo passar por uma via estreita -- quanto legais -- como a Zona de Máxima Restrição de Fretamento (ZMRF) ou licenciamento necessário para um veículo realizar o transporte coletivo de pessoas. O processamento do georreferenciamento do mapa, pontos e das vias será realizado com suporte das bibliotecas \emph{Places API}, \emph{Directions API}, \emph{Distance Matrix API}, \emph{Geocoding API} e \emph{Maps Embed API}, o uso é detalhado na fundamentação teórica.
+
+Visando o conforto em realizar uma viagem inteira sentado e sem a necessidade de integrações entre modais, será levado em consideração que uma viagem deverá ser realizada a partir da origem especificada pelo usuário -- normalmente a residência -- até o destino -- colégio, faculdade ou trabalho -- desconsiderando possíveis integrações com outros modais de transporte -- ônibus municipais, trens ou metrôs -- ou outros fretados.
+
+Por fim, sabe-se que no contexto do problema de roteamento de veículos, muitas vezes é \emph{impossível} de garantir que o caminho encontrado será o menor ou o mais rápido, como é detalhado na Fundamentação Teórica \ref{fundamentacao}.
+
+\section{Método de Trabalho}\label{metodo-trabalho}
+A pesquisa irá se basear em procedimentos que consistem em estudos bibliográficos que envolve, a leitura de livros, artigos acadêmicos, notícias e informações do poder público e organizações não-governamentais para planejamento de mobilidade urbana. A pesquisa também se baseará em estudos de casos, visto que abordará empresas transportes públicos e privados e modelos adotados em outras cidades. Por fim, será realizada a modelagem e a implementação do protótipo e análise dos resultados.
+
+\subsection{Estruturação do Problema}
+Antes de se propor a resolver este problema é necessário contextualizar e entender os desafios da mobilidade urbana e as soluções que já são utilizadas pela engenharia de tráfego para contorná-los. Grandes metrópoles como São Paulo contam com inteligência de tráfego para entender melhor problemas de trânsito, demandas e as rotas de transportes coletivos e soluções mais robustas para cada um dos problemas citados.
+
+\subsection{Revisão Bibliográfica} 
+Estudo de algoritmos e trabalhos que foram publicados previamente e que se propuseram a resolver algum problema de mobilidade urbana e de logística com programação linear, heurística e meta-heurística. 
+
+\subsection{Estudo sobre redes no contexto de locomoção urbana}
+Entender como a sociedade urbana se organiza em rede e como a topologia pode ser aplicada na região metropolitana de São Paulo.  A ideia de rede pode ser analisada a partir da metodologia de agregar insumos de uma mesma natureza ou de naturezas diferentes. ``A rede é o próprio tecido constitutivo da sociedade, engendrando desde as redes sociais pessoais'' \cite{inojosa}
+
+\subsection{Levantamento das estruturas de dados de geolocalização}
+Analisar as diferentes formas de armazenar pontos e rotas georreferenciadas. Estruturar indexação dos dados.
+
+% \subsection{Estimativa da imprevisibilidade do tráfego}
+% O tráfego diário está sujeito a alterações devido a acidentes, intervenção da natureza, eventos sociais e esportivos, obras em vias entre outros fatores podem mudar o fluxo de tráfego tornando algumas rotas mais difíceis. Além de levar tais fatores em consideração, para definir a melhor rota, uma estimativa deve ser aproximada para assegurar pontualidade no destino dos passageiros.
+
+\subsection{Definição e implementação do protótipo}
+Modelar as variáveis de decisão, as restrições e modelo de relação entre veículos, rotas, motoristas, passageiros e pontos. Definição de tecnologias que serão utilizadas e do método de desenvolvimento do protótipo.
+
+\subsection{Planejamento e execução de testes}
+Criar a massa de testes para medir a eficiência do protótipo com simulações e interpretar seus resultados.
+
+\subsection{Análise de resultados}
+Analisar os resultados fornecidos pelos testes e verificar se cumprem os requisitos do protótipo.
+
+\section{Organização do Texto}
+O projeto é apresentado em \ref{chap:last} capítulos, referências bibliográficas e os anexos.
+
+No primeiro capítulo, Introdução, descreve-se a problemática, motivação, objetivos gerais e específicos e a metodologia de trabalho que será utilizada neste projeto. 
+
+No capítulo 2, Revisão Bibliográfica, é apresentada a fundamentação teórica que
+abordará a complexidade dos problemas de roteamento de veículos, seja no contexto de logística para entregas ou para transporte de passageiros e suas propostas de melhorias. Também será discutido problemas de mobilidade, soluções de engenharia de tráfego e a segmentação de passageiros.
+
+Por fim, no capítulo \ref{chap:last}, será exposta a análise crítica do problema, quais são os pontos de melhorias para trabalhos futuros. 
+
+
+\section{Cronograma}
+O cronograma é apresentado com a distribuição das atividades propostas no Método de Trabalho \ref{metodo-trabalho}.
+
+\input{tabelas/cronograma} 
