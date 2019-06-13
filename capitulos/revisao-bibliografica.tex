@@ -1,9 +1,9 @@
 \chapter{Revisão Bibliográfica}
 
-Neste capítulo é apresentada a revisão da bibliografia que dá suporte e embasamento para o desenvolvimento deste trabalho, expondo técnicas, conceitos fundamentais e tecnologias que são citadas na literatura para a resolução do problema proposto. Os principais fundamentos teóricos que são cruciais para a compreensão do trabalho são abordados na seção \ref{fundamentacao}. A proposta para o método de desenvolvimento do protótipo é discutida na seção \ref{metodo-desenvolvimento}. Por fim, alguns trabalhos relacionados são explorados na seção \ref{relacionados}, onde são destacadas as semelhanças, diferenças e contribuições para o trabalho presente.
+Neste capítulo é apresentada a revisão da bibliografia que dará suporte e embasamento para o desenvolvimento deste trabalho, expondo técnicas, conceitos fundamentais e tecnologias que são citadas na literatura para a resolução do problema proposto. Os principais fundamentos teóricos que são cruciais para a compreensão do trabalho são abordados na seção \ref{fundamentacao}. A proposta para o método de desenvolvimento do protótipo é discutida na seção \ref{metodo-desenvolvimento}. Por fim, alguns trabalhos relacionados são explorados na seção \ref{relacionados}, onde são destacadas as semelhanças, diferenças e contribuições para o trabalho.
 
 \section{Fundamentação Teórica}\label{fundamentacao}
-Nesta seção são apresentados conceitos fundamentais para a compreensão do presente trabalho. Primeiramente, é apresentada uma contextualização sobre o transporte de passageiros em veículos coletivos urbanos (\ref{transporte-urbano}). Posteriormente, problemas de otimização são introduzidas em \ref{problemas-de-otimizacao}, incluindo um problema clássico de otimização denominado \emph{Vehicle Routing Problem}, que é detalhado na subseção \ref{vrp}. 
+Nesta seção são apresentados conceitos fundamentais para a compreensão do presente trabalho. Inicialmente, é apresentada uma contextualização sobre o transporte de passageiros em veículos coletivos urbanos (\ref{transporte-urbano}). Posteriormente, problemas de otimização são introduzidos em \ref{problemas-de-otimizacao}, incluindo um problema clássico de otimização denominado \emph{Vehicle Routing Problem}, que é detalhado na subseção \ref{vrp}. 
 
 As principais técnicas computacionais para a resolução de problemas de Otimização Combinatória, incluindo o Problema de Roteamento de Veículos são introduzidas na subseção \ref{tecnicas-computacionais} classificados em \ref{classes-np} e exploradas em \ref{gulosos} (Algoritmos Gulosos) \ref{metodos-exatos} (Métodos Exatos), \ref{heuristica} (Métodos Heurísticos) e \ref{metaheuristica} (Métodos Meta-Heurísticos). Por fim, sistemas de georreferenciamento citados na literatura são apresentados na subseção \ref{georreferenciamento}
 
@@ -18,24 +18,28 @@ Existem diversos atributos na relação do passageiro com o transporte público 
     \item custo (tarifas).
 \end{itemize}
 
+A tabela \ref{cotran-table} relaciona o atributo do serviço com a sua definição e um indicador equivalente para a sua avaliação.
+
 \input{tabelas/tabela-transporte-urbano.tex}
 
 Apesar da forte relação com o passageiro, as composições homologadas são de viés automotivo e não pensados no lado do usuário.
  
 Os atributos de tempo e capacidade dos veículos caracterizam o transporte urbano coletivo e estão ligados no projeto do veículo, que são prefixados pelos fabricantes. Para o passageiro,o aspecto conforto é composto por um veículo com pouca ocupação, garantindo que o passageiro estará sentado durante a viagem, mas o que também faz parte da satisfação do usuário é a extensão do deslocamento.
 
+A figura a seguir representa a relação entre a densidade de ocupação de um veículo (em pessoas por $m^2$) e o tempo de deslocamento (em minutos).
+
 \begin{figure}[H]
   \centering
   \caption{Relação entre densidade de ocupação e tempo de deslocamento}
  \includegraphics[scale=0.55]{imagens/limite-fisiologico.png} \par
 \bigskip
-\cite[p. 307]{MARTINS}
+Fonte: \cite[p.307]{MARTINS}
 \end{figure}
 Assim, em relação ao transporte de passageiros, os princípios que devem estar presentes para um bom nível de serviço, em destaque, são: 
 \begin{itemize}
     \item \textbf{Permanência}: um serviço constante, sem problemas de prestação de serviços.
-    \item \textbf{Eficiência}: oferecer um serviço satisfatório (conforto).
-    \item \textbf{Modicidade}: serviços preços razoáveis
+    \item \textbf{Eficiência}: oferta de um serviço satisfatório (conforto).
+    \item \textbf{Modicidade}: serviços a preços razoáveis
 \end{itemize}
 
 \subsection{Problemas de Otimização}\label{problemas-de-otimizacao}
@@ -45,7 +49,7 @@ Problemas de otimização podem ser fundamentalmente divididos entre aqueles com
 Já os problemas de otimização de natureza discreta podem ser solucionados por meio de técnicas de Otimização Combinatória. Nos Problemas de Otimização Combinatória procura-se um conjunto finito de soluções -- naturalmente inteiras -- e que podem ser formulados como Problemas de Programação Inteira e consequentemente solucionados por meio de Algoritmos de Programação Inteira \cite{goldbarg} ou podem ser formulados por meio de análise combinatória e solucionados como problemas em Grafos ou algoritmos especificamente desenvolvidos.
 
 
-Problemas de Otimização Combinatória podem ser formulados como \((F, c)\) onde \(F\) é um conjunto de pontos possíveis; e \(c\) uma função de custo. \cite{rodolfo}
+Problemas de Otimização Combinatória podem ser formulados como \((F, c)\) onde \(F\) é um conjunto de pontos possíveis; e \(c\) uma função de custo \cite{rodolfo}.
 
 \[c: F \longrightarrow R^1 \]
 
@@ -73,26 +77,20 @@ Diferentes métodos podem ser utilizados para a solução do VRP, que fundamenta
 
 \subsection{NP-Completo e NP-Difícil}
 \label{classes-np}
-A classe NP (\emph{nondeterministic polynomial time}) é a classe de linguagens decidíveis que podem ser verificadas por um algoritmo em tempo polinomial. O problema do Caixeiro Viajante, por exemplo, tem complexidade $\mathcal{O}(n!)$, porém essa complexidade pode ser diminuída até $\mathcal{O}(n^2 2*n)$ com programação dinâmica. Vejamos qual a diferença entre a classe \emph{NP-Completo} e \emph{NP-Difícil}. A definição de acordo com Nivio Ziviani \cite{ziviani}:
+
+A classe NP (\emph{nondeterministic polynomial time}) é a classe de linguagens decidíveis que podem ser verificadas por um algoritmo em tempo polinomial. O problema do Caixeiro Viajante, por exemplo, tem complexidade $O(n!)$, porém essa complexidade pode ser diminuída até $O(n^22^n)$ com programação dinâmica. A definição de acordo com Nivio Ziviani (\citeyear{ziviani}):
 
 \begin{quote}
 Apenas problemas de decisão (“sim/não”) podem ser \emph{NP-Completo}.
 \end{quote}
 \rightline{\cite[p. 415]{ziviani}}
 
-Ainda de acordo com Ziviani, a classificação e propriedades dos problemas \emph{NP-Completos}: 
+Assim, se uma classe \emph{NP-completo} pode ser resolvido em tempo polinomial a partir de uma máquina determinística, então todos os problemas da classe podem. Isto é, a classe \emph{P} é igual a classe \emph{NP}. Essa afirmação ainda não foi comprovada com nenhum problema da classe \emph{NP-Completo}.
 
-\begin{quote}
-\emph{NP-Completo} é a classe de problemas que pertencem a NP, mas que podem ou não pertencer a P. Eles possuem a seguinte propriedade: se qualquer um dos problemas da classe \emph{NP-Completo} puder ser resolvido em tempo polinomial por uma máquina determinista, então todos os problemas da classe podem, isto é, $P = NP$.
-\end{quote}
-\rightline{\cite[p. 417]{ziviani}}
+Um problema A pertence a classe \emph{NP-Difícil} se existe um problema $B \in $ \emph{NP-Completo} que pode ser transformado em A em tempo polinomial. Portanto, a única diferença com relação à classe \emph{NP-Completo} é que A não é provado ser \emph{NP}.
+\cite[p. 4]{bueno}
 
-Bueno traça a diferença entre problemas da classe \emph{NP-Completos} e \emph{NP-Difíceis}:
-
-\begin{quote}
-Um problema $A$ pertence a classe \emph{NP-Difícil} se existe um problema $B \in$ \emph{NP-Completo} que pode ser transformado em $A$ em tempo polinomial. Portanto, a única diferença com relação à classe \emph{NP-Completo} é que $A$ não é provado ser \emph{NP}.
-\end{quote}
-\rightline{\cite[p. 4]{bueno}}
+Concluindo que o problema que pertence à classe \emph{NP-difícil} não é provado ser resolvido em tempo polinomial.
 
 \subsection{Algoritmos Gulosos}
 \label{gulosos}
@@ -121,7 +119,7 @@ Esta estratégia é uma melhoria do algoritmo \emph{Branch-and-bound}. Nela, oco
 
 
 \subsubsection{Branch-and-price}
-Em casos de problemas de otimização com variáveis integrais, onde se é considerada todas as variáveis do problema simultaneamente, torna-se inviável a utilização das estratégias anteriores. Visto esse tipo de problema, foi criada uma técnica chamada de Geração de Colunas, com intuito de resolver esse tipo de problema. A técnica visa selecionar variáveis com o maior potencial para otimizar o problema. A estratégia \emph{Branch-and-price} é uma versão da estratégia \emph{Branch-and-bound}, que utiliza a Geração de Colunas  em cada nó da árvore de decisão.
+Em casos de problemas de otimização com variáveis integrais, onde se considera todas as variáveis do problema simultaneamente, torna-se inviável a utilização das estratégias anteriores. Visto esse tipo de problema, foi criada uma técnica chamada de Geração de Colunas, com intuito de resolver esse tipo de problema. A técnica visa selecionar variáveis com o maior potencial para otimizar o problema. A estratégia \emph{Branch-and-price} é uma versão da estratégia \emph{Branch-and-bound}, que utiliza a Geração de Colunas  em cada nó da árvore de decisão.
 
 \subsection{Métodos heurísticos}\label{heuristica}
 A etimologia da palavra \emph{heurística} tem origem do verbo grego \emph{heuriskein} -- cuja conjugação na primeira pessoa é \emph{eureka} -- que significa descobrir. No entanto, quando a palavra é empregada no contexto de métodos para a solução de problemas de Otimização Combinatória, o seu sentido pode ser ampliado conforme, por exemplo, a definição de Kendra van Wagner-Cherry \emph{``Uma heurística é um atalho mental que permite às pessoas resolver problemas e fazer julgamentos rápida e eficientemente.''} \cite{goldbarg}
@@ -129,9 +127,8 @@ A etimologia da palavra \emph{heurística} tem origem do verbo grego \emph{heuri
 
 Métodos heurísticos são aqueles as que garantem um bom tempo computacional, porém, não garantem uma solução ótima em todos os casos que atuam. No caso de uma aplicação, uma aproximação heurística traz o benefício do tempo de processamento, uma vez que uma solução ótima, com alto tempo de processamento, deixa de ser uma boa solução para o usuário. 
 
-A seguir temos alguns exemplos de estratégias heurísticas para o VRP.
+A seguir, alguns exemplos de estratégias heurísticas para o VRP.
 
-% \subsubsection{Caixeiro Viajante}
 \subsubsection{Clarke e Wright}
 
 Esta foi uma estratégia extremamente importante para o desenvolvimento dos algoritmos voltados ao VRP, este algoritmo serviu como base para a construção de outros algoritmos sofisticados de roteamento de rotas e veículos \cite{milton-nascimento}. O algoritmo cria grafos contendo os clientes e possíveis rotas, já o depósito é lido a partir de alguma estrutura de armazenamento, então, são calculadas \emph{n-1} rotas de um cliente ao depósito onde n é o número de nós do grafo. A partir destes pares de nós, é calculado  o custo da rota a partir da fórmula \cite[p. 32]{maxwell}: 
@@ -156,12 +153,6 @@ Onde $c_{ik}$ representa o custo entre os nós \emph{i} e \emph{k}, $c_{kj}$  re
 
 Onde \(\mu 0k\) representa a distância entre o depósito e o nó $l$. O local selecionado representa o que tem mais economia.
 
-
-% \subsubsection{Troca-\(\lambda\)}
-% \subsubsection{\(k\)-opt}
-% \subsubsection{Pétalas}
-% \subsubsection{Branch-and-Bound Truncado}
-
 \subsection{Métodos meta-heurísticos}\label{metaheuristica}
 O prefixo \emph{meta} é de origem grega e seu significado original é \emph{além}. Entretanto, em diversas áreas de conhecimento, o seu uso normalmente é empregado para fornecer um significado sobre algo de sua própria natureza, como um conceito que é uma abstração que explica um outro conceito. Desta forma, \emph{meta-heurísticas} são heurísticas projetadas para encontrar, gerar, ou selecionar heurísticas.
 
@@ -184,8 +175,6 @@ A figura \ref{heuristica-goldbarg} exibe características genéricas de uma abor
 \end{figure}
 
 A seguir, são apresentadas algumas abordagens meta-heurísticas que a literatura já utilizou dentro do contexto do VRP.
-
-% \subsubsection{Arrefecimento Simulado}
 
 \subsubsection{Busca Tabu}
 
@@ -217,25 +206,6 @@ A busca tabu armazena na memória algumas soluções e armazena as alterações 
     \item Alterar as atribuições realizadas sobre os vértices de um grafo solução.
 \end{itemize}
 
-%A palavra \emph{tabu}, que possui um sinônimo em inglês grafado como \emph{taboo}, vem do Tongan, uma língua falada em Tonga, na Polinésia, e indica um fato ou um objeto que, por ser sagrado, não pode ser tocado ou mencionado, algo proibido. A busca tabu é assim denominada por empregar estratégias que permitem proibir certas ações ou movimentos de busca durante a escolha de soluções e a exploração de vizinhanças. Apesar de o nome não apresentar perfeitamente a proposta da abordagem, tornou-se tradicional. É comum, na nomenclatura usada na busca tabu, referir-se a configurações variáveis. Uma configuração é uma solução ou qualquer arranjo de variáveis (solução inviável, por exemplo) que seja objeto e de exame no processo de busca.
-%Basicamente a busca tabu objetiva alcançar um esquema de gestão de memória que reduza a possibilidade de examinar mais de uma vez uma mesma configuração (ou solução do problema), uma possibilidade sempre presente nas buscas estocásticas.
-%Consequentemente, evidências de que uma configuração de solução não está sendo reexaminada podem desativar as proibições -- condições tabu. O conjunto das proibições de uma busca tabu é registrado em uma memória dinâmica, o que possibilita sua alteração de acordo com o progresso da busca e demais circunstâncias.
-%No caso da busca tabu, a otimização do exame de configurações permite, além de evitar repetições, aumentar a chance da busca escapar da atração de mínimos locais.
-% Três pontos são básicos no desenvolvimento de um algoritmo em busca tabu:
-%Os três pontos anteriores, visam, principalmente: minimizar o número de configurações visitadas e providenciar condições de escape de mínimos locais. 
-%A busca tabu vai preferencialmente armazenar na memória poucas soluções (ou configurações) e, principalmente, armazenar as alterações nas soluções (ou configurações), não as soluções (ou configurações) propriamente ditas. As modificações nas configurações são denominadas de pertubações.
-% Uma pertubação significa uma alteração no valor ou na composição das variáveis de uma configuração. São listados ao lado alguns exemplos de possíveis movimentos em uma configuração:
-
-%-----
-
-% \textbf{Elementos da Busca Tabu}
-% \begin{itemize}
-%    \item A Lista Tabu Clássica -- Memória de Curto Prazo
-%    \item O Exame da Vizinhança
-%    \item O Critério de Aspiração
-% \end{itemize}
-% -----
-
 A figura \ref{taboo-image} representa através de um fluxograma o passo a passo de um algoritmo de Busca Tabu. Os comentários identificam o propósito e o nome de cada passo. 
 
 
@@ -259,8 +229,6 @@ O Algoritmo 1 representa em pseudocódigo, um algoritmo de busca tabu. A variáv
 Na tabela \ref{tabu-relacionados} são listadas algumas referências de trabalhos acadêmicos relacionados que já utilizaram métodos da busca tabu encontrar a solução.
 
 \input{tabelas/tabu-relacionados}
-
-% \subsubsection{Algoritmo Genético}
 
 \subsubsection{Colônia de Formigas e Enxame de Abelhas}
 Conforme dito anteriormente, muitos métodos meta-heurísticos são inspirados em fenômenos químicos, biológicos, sociais e naturais, como é o caso da Colônia de Formigas e Enxame de Abelhas. Algoritmos em Colônia de Formigas e Enxame de Abelhas são pautados na capacidade de como organismos simples com conceitos modestos de inteligência -- geralmente associados a insetos ou animais de cognição simples -- são capazes de atuar socialmente em conjunto e criar uma organização robusta.
@@ -383,11 +351,11 @@ Essas restrições são o suficiente para satisfazer uma viagem pré-organizada 
  
  A dissertação de mestrado de Jean Gleisson apresenta Algoritmos de Solução para o Problema do Caixeiro Viajante com Passageiros e Quota (\emph{PCVPQ}), sendo uma derivação no problema de roteamento de veículo. A dissertação tem como objetivo reduzir o custo total da viagem compartilhando o custo entre os passageiros que solicitam a carona, porém com o enfoque na soma mínima de quotas coletadas nas cidades visitadas pelo caixeiro. A quota é o valor do custo de deslocamento entre as cidades que será dividida igualmente entre os ocupantes, inclusive o motorista.
 Existem algumas restrições que devem ser respeitadas, como: O motorista é livre para decidir em quais cidades irá visitar; o custo da viagem não pode ultrapassar o valor máximo fixado pelo próprio passageiro e não é levado em consideração a duração da viagem, tempo que permanecerá nas localidades ou o número de cidades que serão visitadas durante a viagem e não haverá uma coleta bônus na cidade de origem do caixeiro.
-Na proposta apresentada nesta dissertação, o grafo considerado G = (N, M, B), onde:
+Na proposta apresentada nesta dissertação, o grafo considerado $G = (N, M, B)$, onde:
 
-N é o conjunto de vértices que representam as cidades;
-M é o conjunto de arestas que representam as rodovias que ligam as cidades, onde, também, há um custo associado à aresta cujo valor é o custo de deslocamento entre as cidades;
-B é o bônus associado a cada cidade, que será coletado no momento que ocorre a visita da cidade.
+$N$ é o conjunto de vértices que representam as cidades;
+$M$ é o conjunto de arestas que representam as rodovias que ligam as cidades, onde, também, há um custo associado à aresta cujo valor é o custo de deslocamento entre as cidades;
+$B$ é o bônus associado a cada cidade, que será coletado no momento que ocorre a visita da cidade.
 
 Para a solução, o autor estudou os seguintes métodos:
 A heurística de carregamento ótimo (\emph{NAIVE}) visa obter a rota de menor custo possível, e para essa rota, obter o embarque ótimo para o carro.
@@ -399,8 +367,8 @@ Como conclusão, o autor encerra dando a ênfase no problema, pois tem potencial
 Assim como no trabalho mencionado, temos como objetivo o transporte coletivo de passageiros, porém levaremos em consideração:
 \begin{itemize}
     \item As cidades visitadas pelo motorista, para que haja compatibilidade de passageiros da mesma região;
-    \item Atender um grande número de pessoas num mesmo veículo e reduzir o tempo da viagem dos passageiros e então, o custo não será levado como prioridade, pois será uma consequência.
-    \item O tempo de viagem total, assim teremos como uma meta a viagem ser confortável para o passageiro;
+    \item Atender um grande número de pessoas num mesmo veículo e reduzir o tempo da viagem dos passageiros e então, o custo não será levado como prioridade, pois será uma consequência;
+    \item O tempo de viagem total, assim teremos como uma meta a viagem ser confortável para o passageiro.
 \end{itemize}
 
 Embora os objetivos e alguns métodos de resolução do problema sejam parecidos, as restrições serão diferentes, por exemplo, não teremos o sistema de coleta do bônus descrito, pois o mesmo não é relevante na nossa solução. Portanto, é importante entender que as delimitações podem gerar muitas soluções para um mesmo tipo de problema, de acordo com cada segmentação levada em consideração em cada projeto.

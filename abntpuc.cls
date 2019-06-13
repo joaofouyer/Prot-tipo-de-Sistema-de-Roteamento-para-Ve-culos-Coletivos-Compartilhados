@@ -8,7 +8,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{abntpuc}
 \LoadClass[a4paper, 12pt]{report}
-
 \RequirePackage[brazil]{babel}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[a4paper]{geometry}
@@ -23,6 +22,12 @@
 \RequirePackage{float}
 \RequirePackage{titlesec}
 \RequirePackage{tocloft,etoolbox}
+
+\patchcmd{\l@chapter}{#1}{\MakeUppercase{#1}}{}{}
+\patchcmd{\l@subsection}{#1}{\normalfont{#1}}{}{}
+\patchcmd{\l@subsubsection}{#1}{\normalfont{\emph{#1}}}{}{}
+
+
 \geometry{top=3cm,bottom=2cm,left=3cm,right=2cm}
 
 \setlength{\parindent}{1.25cm}
@@ -32,8 +37,6 @@
 \pagestyle {empty}
 \pagestyle {myheadings}
 
-% -- Configurações de fontes
-\font\fontesecao=cmr12 at 10pt
 
 %-- Configuração do cabeçalho
 \setlength{\headheight}{15pt}
@@ -293,14 +296,9 @@
 \end{newpage}
 }
 
-
-
-\patchcmd{\l@chapter}{#1}{\MakeUppercase{#1}}{}{}
-\patchcmd{\l@subsection}{#1}{\normalfont{#1}}{}{}
-\patchcmd{\l@subsubsection}{#1}{\normalfont{\emph{#1}}}{}{}
-
-
-
+% \patchcmd{\l@chapter}{#1}{\MakeUppercase{#1}}{}{}
+% \patchcmd{\l@subsection}{#1}{\normalfont{#1}}{}{}
+% \patchcmd{\l@subsubsection}{#1}{\normalfont{\emph{#1}}}{}{}
 
 % --- SUMARIO ---
 \newcommand{\sumario}
@@ -383,7 +381,7 @@
 \renewcommand{\cftsubsecfont}{\itshape}
 \setlength{\cftsubsubsecindent}{0em}
 \renewcommand{\cftsubsubsecfont}{\bfseries}
-%\usepackage{titlesec}
+\usepackage{titlesec}
 
 % --- Titulo de capitulo ---
 \newcommand{\capitulo}[1]{\chapter{#1} \thispagestyle{myheadings}}
@@ -418,9 +416,8 @@
 {0.5\baselineskip} 
 {\noindent\itshape}} 
 
-
-% --- REFERENCIAS ---
 \usepackage[alf]{abntcite}
+% --- REFERENCIAS ---
 \def\@makeschapterhead#1{
         \thispagestyle{empty}
 	\begin{center} \textbf{#1}\par \end{center}
