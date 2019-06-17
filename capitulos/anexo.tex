@@ -1,0 +1,121 @@
+\section*{Anexo 1 -- Tabela de indicadores de qualidade do serviço}
+\input{tabelas/tabela-transporte-urbano.tex}
+\section*{Anexo 2 -- Métodos Exatos Utilizados no VRP }
+\subsection*{Branch-and-bound}
+Esta estratégia consiste em solucionar problemas de otimização com restrições de variáveis inteiras. A partir de um problema inicial, é criada uma série de ramificações (\emph{Branch}) das restrições (\emph{Bound}) que existem neste problema, de modo que, as restrições não permitam uma solução parcial do problema. Esta estratégia monta uma árvore de decisão com base em limites superiores e inferiores, impedindo que algumas soluções ruins sejam exploradas. Este método pode ser utilizado com outros métodos de programação linear, como por exemplo, o SIMPLEX \cite{LAPORTE1992345}. O \emph{Branch-and-Bound} elimina ramificações de restrições caso se encontre uma das condições:
+
+\begin{enumerate}
+    \item O problema restrito é impossível.
+    \item A solução ótima do ramo é inteira.
+    \item A solução encontrada no ramo é pior do que a melhor solução atual.
+\end{enumerate}
+
+\subsection*{Branch-and-cut}
+Esta estratégia é uma melhoria do algoritmo \emph{Branch-and-bound}. Nela, ocorre a resolução dos problemas relaxados (sem restrições de integralidade) do \emph{Branch-and-bound}, utilizando um plano de cortes. O algoritmo passa nó a nó da árvore, executando o plano de cortes e checando se naquele nó, a solução ótima do subproblema obedece às restrições de integralidade ou se o limitante inferior é maior que a solução já conhecida, caso uma dessas situações ocorra, o nó é descartado. Caso não seja encontrada uma inequação válida para o problema de separação, aplica-se a ramificação.
+
+\subsection*{Branch-and-price}
+Em casos de problemas de otimização com variáveis integrais, onde se considera todas as variáveis do problema simultaneamente, torna-se inviável a utilização das estratégias anteriores. Visto esse tipo de problema, foi criada uma técnica chamada de Geração de Colunas, com intuito de resolver esse tipo de problema. A técnica visa selecionar variáveis com o maior potencial para otimizar o problema. A estratégia \emph{Branch-and-price} é uma versão da estratégia \emph{Branch-and-bound}, que utiliza a Geração de Colunas  em cada nó da árvore de decisão.
+
+\section*{Anexo 3 -- Métodos Heurísticos Utilizados no VRP}
+
+\subsection*{Clarke e Wright}
+
+Esta foi uma estratégia extremamente importante para o desenvolvimento dos algoritmos voltados ao VRP, este algoritmo serviu como base para a construção de outros algoritmos sofisticados de roteamento de rotas e veículos \cite{milton-nascimento}. O algoritmo cria grafos contendo os clientes e possíveis rotas, já o depósito é lido a partir de alguma estrutura de armazenamento, então, são calculadas \emph{n-1} rotas de um cliente ao depósito onde n é o número de nós do grafo. A partir destes pares de nós, é calculado  o custo da rota a partir da fórmula \cite[p. 32]{maxwell}: 
+
+\[ s_{ij} = c_{i0} + c_{0j} - c_{ij} \]
+
+Onde $s_{ij}$ representa a economia com relação aos nós \emph{i} e \emph{j}, e $c_{ij}$ representa o custo de se ir do nó \emph{i} ao nó \emph{j}. As economias são colocadas, em ordem decrescente, em uma tabela após o cálculo. 
+
+O algoritmo de \emph{Clark e Wright} é resolvido em tempo polinomial, pois, a complexidade é da ordem $\mathcal{O}(n^2)$. Há, no entanto, uma desvantagem de se usar a estratégia de \emph{Clark e Wright}, pois o algoritmo descartará todos os nós que não se encontram nos extremos das rotas, ou seja, os nós internos não entram na tabela de economia.
+
+\subsection*{Mole e Jameson}
+
+A estratégia de \emph{Mole e Jameson} é uma melhoria do algoritmo de \emph{Clark e Wright}, ele tem como um ponto forte, considerar os nós internos que são descartados no teste de economia do algoritmo de \emph{Clark e Wright}. O algoritmo começa carregando o grafo a partir de uma matriz de adjacências e de uma lista de nós livres (nós que não pertencem à nenhuma rota). Posteriormente, é construído um grafo que não contém o nó do depósito a partir da matriz de adjacências e da lista de nós livres. A partir de algum critério pré-definido, um par de nós é escolhido para ser a rota inicial. Após definida a rota inicial, um laço começará a inserir os nós na rota, seguindo dois critérios: O de \textbf{Proximidade} e o de \textbf{Economia}.
+Para realizar o cálculo da \textbf{Proximidade} dos nós é utilizada a seguinte fórmula \cite[p. 33]{maxwell}:
+
+\[\alpha(i, k, j) = c_{ik} + c_{kj} - \lambda c_{ij} \]
+
+Onde $c_{ik}$ representa o custo entre os nós \emph{i} e \emph{k}, $c_{kj}$  representa o custo entre os nós \emph{l} e \emph{j}. Se nenhuma violação for quebrada, o nó com menor distância será inserido na rota. O cálculo da economia é aquele que apontará qual o melhor lugar para o nó ser inserido, este cálculo é dado por:
+
+\[\beta(i, k, j) = \mu 0k - \alpha(i, k, j) \]
+
+
+Onde \(\mu 0k\) representa a distância entre o depósito e o nó $l$. O local selecionado representa o que tem mais economia.
+
+\section*{Anexo 4 -- Métodos Meta-Heurísticos Utilizados no VRP}
+
+\subsection*{Busca Tabu}
+
+A etimologia da palavra \emph{tabu} tem origem do \emph{Tongan}, idioma falado em Tonga, na Polinésia e indica algo proibido por ser sagrado e que não pode ser tocado ou mencionado. O algoritmo da busca tabu é assim nomeado por ser composto de estratégias que permitem \emph{proibir} determinadas ações durante a varredura de vizinhanças e a escolha de soluções.
+
+A busca tabu foi introduzida na literatura por Fred Glover em 1986 \cite{GLOVER1986533} e posteriormente aperfeiçoada em outros trabalhos acadêmicos. É um método que permite tanto uma abordagem probabilística \cite{crainic1993dynamic} quanto determinística \cite{ongsakul2004unit}. Ao contrário de muitos métodos meta-heurísticos, a busca tabu não possui analogia com fenômenos naturais. Os princípios de uma busca tabu segundo Golbarg \emph{et al.} (2015) são:
+\begin{enumerate}
+    \item Uma busca eficiente não deve revisitar soluções;
+    \item Manter registro de todas as soluções visitadas é computacionalmente dispendioso. É mais eficiente armazenar alterações na solução ou em variáveis; e
+    \item Memorizar alterações nas soluções não elimina a possibilidade de reexame de soluções, apenas diminui a chance dessa possibilidade.
+\end{enumerate}
+
+Um dos princípios da busca tabu é aproveitar-se de um esquema de gestão de memória auxiliar de curto, médio e longo prazo para evitar examinar mais de uma vez uma mesma configuração em uma varredura em busca de uma solução. Este conjunto de proibições -- usualmente denominado \emph{condições tabu} -- é registrado em memória dinâmica, permitindo que seja alterado de acordo com o progresso da busca, visto que podem ocorrer evidências de que uma configuração de solução não está sendo considerada e estas proibições precisam ser desativadas. Além de evitar repetições, uma otimização das configurações da busca permite aumentar a chance da busca escapar da atração de mínimos locais. 
+
+Fundamentalmente, algoritmos de busca tabu são orientados à varredura de vizinhanças específicas (denominada \emph{intensificação}) com configuração de foco de busca variável (denominada \emph{diversificação}). Um algoritmo de busca tabu visa crucialmente minimizar a quantidade de configurações visitadas e fornecer condições de escape de mínimos locais. Portanto, para atingir este objetivo, uma busca tabu é composta por:
+
+\begin{itemize}
+    \item Memória de curto prazo para preservar o histórico imediato da busca;
+    \item Estratégias de memória de médio e longo prazo com o objetivo de equilibrar o esforço computacional da \emph{intensificação} com o utilizado na \emph{diversificação};
+    \item Regras que permitam ajustar gestão da memória, critérios de pertubação e de escolha da configuração.
+\end{itemize}
+
+A busca tabu armazena na memória algumas soluções e armazena as alterações posteriores nas próprias soluções. Estas modificações nas soluções são denominadas de \emph{pertubações}. Uma \emph{pertubação} é uma alteração no valor ou na composição das variáveis de uma solução. Goldbarg \emph{et al.} (2015) exemplificam alguns exemplos de possíveis movimentos em uma configuração:
+
+\begin{itemize}
+    \item Mudar as atribuições de uma variável binária de zero para um, ou vice-versa.
+    \item Permutar os vértices em uma solução de rota.
+    \item Introduzir ou retirar arcos em uma grafo solução.
+    \item Alterar as atribuições realizadas sobre os vértices de um grafo solução.
+\end{itemize}
+
+A figura \ref{taboo-image} representa através de um fluxograma o passo a passo de um algoritmo de Busca Tabu. Os comentários identificam o propósito e o nome de cada passo. 
+
+
+\begin{figure}[H]
+  \centering
+  \caption{Passo a passo com comentários de um algoritmo de Busca Tabu.}
+ \includegraphics[scale=0.4]{imagens/tabu.png} \par
+\bigskip
+    Fonte: \cite[p. 97]{goldbarg}
+    \label{taboo-image}
+\end{figure}
+
+O Algoritmo 1 representa em pseudocódigo, um algoritmo de busca tabu. A variável $p_{max}$ controla o máximo de iterações. A variável $q_{max}$ controla as iterações sem melhoria. \emph{N(s)} simboliza a vizinhança da configuração \emph{s} e \emph{f(s)} representa o valor da configuração \emph{s}.
+
+\input{algoritmos/busca-tabu}
+
+
+\subsection*{Colônia de Formigas e Enxame de Abelhas}
+Conforme dito anteriormente, muitos métodos meta-heurísticos são inspirados em fenômenos químicos, biológicos, sociais e naturais, como é o caso da Colônia de Formigas e Enxame de Abelhas. Algoritmos em Colônia de Formigas e Enxame de Abelhas são pautados na capacidade de como organismos simples com conceitos modestos de inteligência -- geralmente associados a insetos ou animais de cognição simples -- são capazes de atuar socialmente em conjunto e criar uma organização robusta.
+
+Esta forma de organização social com razoável grau de autonomia é denominado de \emph{Inteligência Coletiva} e um dos precursores do estudo foi William Morton Wheeler, em 1911. Esta forma de inteligência é tão extraordinária que o Prêmio Nobel de 1911, Maurice Maeterlinck, já questionava em seu livro \emph{La Vie des Abeilles} e vários estudos posteriores foram realizados com os mais diversos tipos de insetos \cite{Dorigo2010}. A definição segundo Bonabeau \emph{et al.} \citeyear{bonabeau1999swarm}:
+
+\begin{quote}
+Inteligência Coletiva é uma abordagem que permite o desenvolvimento de algoritmos de processamento distribuído inspirados no comportamento de insetos sociais ou de outras sociedades animais.
+\end{quote}
+\rightline{\cite[p. 7]{bonabeau1999swarm}}
+
+Na área de Otimização Combinatória, os precursores na utilização da Colônia de Formigas foram Beckers \emph{et al.} \citeyear{Beckers1992TrailsAU}, onde foi demonstrado através de um experimento que formigas são capazes de encontrar o caminho mais curto entre o formigueiro e uma fonte de alimentação explorando coletivamente o feromônio que as formigas deixam no chão enquanto caminha; e Colorni \emph{et al.} \citeyear{colorni1992distributed}, que ainda em 1992 publicaram estudo sobre otimização distribuída baseado em Colônias de Formigas.
+
+Sob o ponto de vista sistêmico, estes algoritmos trabalham através de processos de auto-organização. A auto-organização pode ser atribuída a um sistema aberto -- um sistema que permite troca de energia com o ambiente -- que contém a propriedade de conseguir crescer em complexidade de forma organizada sem que exista um guiamento centralizado ou gestão externa ao sistema.
+
+Os sistemas auto-organizados emergem padrões. Um padrão é um arranjo privado e organizado de objetos que é preservado no espaço e no tempo. Quando emergentes, estes arranjos permitem que as propriedades do sistema se alterem de forma organizada.
+
+O processo que se opõe à desorganização (\emph{entropia}) é denominado de \emph{negentropia} ou \emph{sintropia}. O Nobel da Física Erwin Schrödinger, distinguiu sistemas com tendências entrópicas e outros que possuem dispositivos negentrópicos e que são capazes de se organizar em níveis cada vez mais complexos e se auto-organizar e regenerar. 
+
+Os algoritmos de Colônia de Formigas são compostos de agentes (\emph{formigas}) que cooperam globalmente para encontrar uma solução. À medida que as soluções são construídas, estruturas de vizinhança ou especiais são marcadas como forma de comunicação. Essa comunicação é empregada assim como a utilização de feromônios na organização das formigas para a construção de uma solução aos passos da formiga que está procurando alimento. Desta forma, a construção da solução percorre uma trilha de decisões marcadas anteriormente.
+
+Algoritmos de Colônia de Formigas seguem algumas características importantes:
+\begin{itemize}
+    \item As formigas não se comunicam diretamente;
+    \item Cada formiga constrói uma solução movendo-se em uma sequência finita de estados.
+    \item Estes movimentos são feitos de acordo com probabilidade que leva em consideração informações da própria formiga (memória simples de ações locais) e da trilha de feromônio (ações globais)
+\end{itemize}
+
+\input{tabelas/colonia-relacionados}

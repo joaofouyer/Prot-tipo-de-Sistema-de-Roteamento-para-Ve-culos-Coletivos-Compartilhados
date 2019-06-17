@@ -381,7 +381,6 @@
 \renewcommand{\cftsubsecfont}{\itshape}
 \setlength{\cftsubsubsecindent}{0em}
 \renewcommand{\cftsubsubsecfont}{\bfseries}
-\usepackage{titlesec}
 
 % --- Titulo de capitulo ---
 \newcommand{\capitulo}[1]{\chapter{#1} \thispagestyle{myheadings}}

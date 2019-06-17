@@ -1,9 +1,11 @@
-\chapter{Introdução}
+\chapter{Introdução} 
 O tempo gasto no trânsito para a locomoção diária é um grande problema para os habitantes que residem em grandes metrópoles. Na região metropolitana de São Paulo, por exemplo, o congestionamento e o tempo gasto no trânsito é a quarto problema mais citado pelos cidadãos \cite{viveremsp}. Além disto, o transporte público se mostra ineficiente e causa desgaste para seus passageiros frequentes, sendo o quinto problema com o maior número de queixas \cite{mobilize}. Com pouca manutenção, muitas vezes os veículos da Grande São Paulo falham em oferecer uma boa experiência de locomoção para seus usuários, principalmente por causa da superlotação nos horários de pico e da falta de conforto dos veículos \cite{viveremsp}.
 
 Além do problema enfrentado pelos passageiros, o Poder Público também tem o desafio de minimizar os gastos com a Secretaria de Transportes Metropolitanos ao passo que precisa diminuir o trânsito da cidade. Nos últimos anos, novas formas de locomoção foram incorporadas no cotidiano do paulistano a partir de iniciativas privadas ou de parcerias público-privadas (PPP) com ajuda da tecnologia digital, como por exemplo os aplicativos de carona, compartilhamento de bicicletas e patinetes elétricos e o fretamento privado de veículos coletivos -- como ônibus e vans. 
 
 A evolução da tecnologia da informação, sobretudo da tecnologia móvel, desempenha um papel importante na viabilidade destes serviços, permitindo a interação entre o fornecedor e o consumidor mesmo que não se conheçam. Nos aplicativos de carona, por exemplo, passageiros e motoristas que nunca se viram conseguem ser conectados em tempo real graças à popularização dos \emph{smartphones} e da Internet móvel. 
+
+Este trabalho apoia-se na capacidade que a tecnologia da informação tem para potencializar e facilitar o planejamento de rotas para veículos coletivos a partir de dados disponíveis.
 
 \section{Motivação}
 
@@ -23,7 +25,7 @@ Outro desafio no planejamento urbano é atualizar as rotas e a frequência do tr
 
 A evolução da tecnologia da informação, sobretudo da tecnologia móvel e da Internet das Coisas \emph{(IoT)}, possibilita que ferramentas auxiliares sejam utilizadas para coletar dados e realizar um planejamento mais adequado para transporte coletivo. Desta forma, rotas ociosas poderiam ser alteradas para diminuir a duração total do trajeto e diminuir os custos de operação, assim como novas rotas poderiam ser criadas para atender demandas existentes e melhorar a abrangência do serviço ofertado. Com ajuda das soluções tecnológicas já existentes como \emph{Google Maps} e \emph{Waze}, é possível ampliar as funcionalidades que um simples \emph{GPS} pode proporcionar, fazendo com que a rota seja calculada para atender não só uma pessoa individual, mas várias delas ao mesmo tempo, levando em consideração o deslocamento e tempo de viagem.
 
-A tecnologia da informação e métodos computacionais podem servir como ferramentas para facilitar e ampliar o planejamento das rotas de transporte coletivo de pessoas em uma metrópole como São Paulo, diminuindo a dificuldade de gestores de transportes públicos e de administradores de empresas de fretado em planear essas rotas para os veículos que as realizarão. Neste trabalho, será desenvolvido um protótipo que aplica e adapta conjuntos de métodos computacionais para aprimorar o roteamento de veículos para o transporte de passageiros, seguindo critérios e restrições que serão detalhadas nos objetivos e delimitação do problema.
+A tecnologia da informação e métodos computacionais podem servir de apoio para ferramentas que visam facilitar e ampliar o planejamento das rotas de transporte coletivo de pessoas em uma metrópole como São Paulo, diminuindo a dificuldade de gestores de transportes públicos e de administradores de empresas de fretado em planear essas rotas para os veículos que as realizarão. Neste trabalho, será desenvolvido um protótipo que aplica e adapta conjuntos de métodos computacionais para aprimorar o roteamento de veículos para o transporte de passageiros, seguindo critérios e restrições que serão detalhadas nos objetivos e delimitação do problema.
 
 \section{Objetivos}
 
@@ -36,15 +38,12 @@ Desenvolver um protótipo de roteamento de veículos para o transporte de passag
 \subsection{Objetivos Específicos}
 Nos objetivos específicos deste trabalho pretende-se:
 \begin{itemize}
-    \item Geocodificar endereços de origem e destino;
     
-    \item Geocodificar pontos de embarque e desembarque;
-    
-    \item Agrupar passageiros que possam convergir em uma rota através de métodos de \emph{clusterização}, a fim de maximizar o número de pessoas por viagem e respeitando a capacidade do veículo;
+    \item Agrupar passageiros que possam convergir em uma rota a fim de minimizar o número de assentos livres por viagem e respeitando a capacidade do veículo;
     
     \item Indicar os pontos de embarque e desembarque de cada passageiro respeitando o limite máximo de deslocamento necessário a partir da origem/destino até o ponto de embarque e a partir do ponto de desembarque até a origem/destino;
     
-    \item Ordenar os pontos de embarque e desembarque utilizando Caixeiro Viajante como base a fim de diminuir o tempo do trajeto e a distância percorrida pelo veículo;
+    \item Ordenar os pontos de embarque e desembarque a fim de diminuir o tempo do trajeto e a distância percorrida pelo veículo;
     
     \item Formular um protótipo para buscar a distância e o tempo de deslocamento real entre os pontos de embarque e desembarque;
     
@@ -57,30 +56,35 @@ Nos objetivos específicos deste trabalho pretende-se:
 \end{itemize}
 
 \section{Justificativa}
-O governo do estado de São Paulo facilita, através de vários canais(**SPtrans, sitePref**), a coleta de informações sobre o transporte público. A empresa \emph{Uber} também fornece dados de uso de sua ferramenta em São Paulo, com esse tipo de informação, é possível mapear a demanda de um meio de transporte alternativo na cidade. Também há o fato de que São Paulo tem um sistema desajustado de transporte que necessita de melhorias **PesquisaMob, portanto, a capital se torna uma boa candidata para averiguar os resultados obtidos. Tendo isso em vista, a capital paulista será o contexto do projeto.
+A partir da Emenda Constitucional número 90 de 2015 \cite{pec}, o transporte é considerado um direito social de todo cidadão brasileiro, junto com educação, saúde e previdência social. Apesar disto, o sistema de transporte público ainda é deficiente em diversos municípios brasileiros, mesmo apresentando despesas altas aos cofres públicos e nas tarifas pagas pelos seus usuários. 
+ 
+No caso do município de São Paulo, o valor orçado para a secretaria de transportes urbanos em 2019 foi de aproximadamente R\$ 3,4 bilhões \cite{loatrans}. O alto investimento não é justificado em melhoria na qualidade do serviço, mas pode ser atribuído a diversos fatores, como a falta de trabalhadores qualificados e de recursos necessários para planejar e gerenciar a rede de transporte, que inclui estabelecer o itinerário e horário das rotas de ônibus de acordo com a demanda, designar e atribuir os veículos às rotas, considerando o custo, a segurança, o tempo de deslocamento e a capacidade dos veículos \cite{lima2016mixed}.
+
+Por outro lado, ambos Governo do Estado e da Cidade de São Paulo, facilitam a coleta e contextualização de informações referentes ao transporte e locomoção na região metropolitana de São Paulo através de pesquisas realizadas e de ferramentas disponíveis para demais pesquisadores. São exemplos a pesquisa de Origem e Destino realizada pelo Metrô de São Paulo (Companhia do Metropolitano de São Paulo, \citeyear{odpq}), a interface para acesso à informação para desenvolvedores fornecida pela SPTrans \cite{sptranspq} e a composição do estudo tarifário que é realizado anualmente \cite{tarifapq}. Além disto, em face dos desafios de mobilidade urbana e do esforço coletivo em superá-los, o Governo do Estado criou um programa exclusivo de Parceria Público-Privada (PPP) para mobilidade na região metropolitana (Governo do Estado de São Paulo, \citeyear{ppppq}).
+
+Este esforço coletivo também é evidente em organizações não-governamentais e em setores privados. A Rede Nossa São Paulo, por exemplo, possui pesquisas que tangem o assunto sob diferentes aspectos \cite{redepq}. São Paulo é a única cidade brasileira no Movement \cite{uberpq}, plataforma da Uber que disponibiliza para gestores públicos e pesquisadores informações detalhadas sobre o tempo de locomoção de acordo com as viagens realizadas no serviço.
+
+Portanto, o problema que emerge deste trabalho é de como a tecnologia da informação pode servir de ferramenta para auxiliar no planejamento de rotas para veículos coletivos. O instrumento resultante poderia ser utilizado por gestores públicos e/ou pela iniciativa privada ao desenvolver formas alternativas de transporte coletivo. A escolha de São Paulo se deve, principalmente, à disponibilidade de dados e de pesquisas que podem ser utilizadas no desenvolvimento do trabalho.
+
 
 \section{Delimitação do Problema}
-O estudo do modelo de solução do problema considera apenas a região da Grande São Paulo, ignorando tanto restrições físicas -- como a inviabilidade de um veículo passar por uma via estreita -- quanto legais -- como a Zona de Máxima Restrição de Fretamento (ZMRF) ou licenciamento necessário para um veículo realizar o transporte coletivo de pessoas. O processamento do georreferenciamento do mapa, pontos e das vias será realizado com suporte das bibliotecas \emph{Places API}, \emph{Directions API}, \emph{Distance Matrix API}, \emph{Geocoding API} e \emph{Maps Embed API}, o uso é detalhado na fundamentação teórica.
+O estudo do modelo de solução do problema considera apenas a região da Grande São Paulo, devido à disponibilidade de dados de pesquisas anteriores e de ferramentas do setor público e privado. São ignoradas tanto restrições físicas -- como a inviabilidade de um veículo passar por uma via estreita -- quanto legais -- como a Zona de Máxima Restrição de Fretamento (ZMRF) ou licenciamento necessário para um veículo realizar o transporte coletivo de pessoas. O processamento do georreferenciamento do mapa, pontos e das vias será realizado com suporte das bibliotecas \emph{Places API}, \emph{Directions API}, \emph{Distance Matrix API}, \emph{Geocoding API} e \emph{Maps Embed API}, o uso é detalhado na fundamentação teórica.
 
-Visando o conforto em realizar uma viagem inteira sentado e sem a necessidade de integrações entre modais, será levado em consideração que uma viagem deverá ser realizada a partir da origem especificada pelo usuário -- normalmente a residência -- até o destino -- colégio, faculdade ou trabalho -- desconsiderando possíveis integrações com outros modais de transporte -- ônibus municipais, trens ou metrôs -- ou outros fretados.
-
-Por fim, sabe-se que no contexto do problema de roteamento de veículos, muitas vezes é \emph{impossível} de garantir que o caminho encontrado será o menor ou o mais rápido, como é detalhado na Fundamentação Teórica \ref{fundamentacao}.
+Visando o conforto em realizar uma viagem inteira sentado, a quantidade de passageiros que podem ser transportados em um veículo será considerada a partir da quantidade de assentos disponíveis. Será levado em consideração que uma viagem deverá ser realizada a partir da origem especificada pelo usuário -- normalmente a residência -- até o destino -- colégio, faculdade ou trabalho -- desconsiderando possíveis integrações com outros modais de transporte -- ônibus municipais, trens ou metrôs -- ou outros fretados. Caso algum usuário ache conveniente realizar alguma integração, ele deverá explicitamente definir o endereço de onde a integração é realizada como origem e/ou de destino.
 
 \section{Método de Trabalho}\label{metodo-trabalho}
-A pesquisa irá se basear em procedimentos que consistem em estudos bibliográficos que envolve, a leitura de livros, artigos acadêmicos, notícias e informações do poder público e organizações não-governamentais para planejamento de mobilidade urbana. A pesquisa também se baseará em estudos de casos, visto que abordará empresas transportes públicos e privados e modelos adotados em outras cidades. Por fim, será realizada a modelagem e a implementação do protótipo e análise dos resultados.
+A pesquisa irá se basear em procedimentos que consistem em estudos bibliográficos que envolve a leitura de livros, artigos acadêmicos, notícias e informações do poder público e organizações não-governamentais para planejamento de mobilidade urbana. A pesquisa também se baseará em estudos de casos, visto que abordará empresas transportes públicos e privados e modelos adotados em outras cidades. Por fim, será realizada a modelagem e a implementação do protótipo e análise dos resultados.
 
 \begin{enumerate}
 \item \textbf{Estruturação do Problema} --
-Antes de se propor a resolver este problema é necessário contextualizar e entender os desafios da mobilidade urbana e as soluções que já são utilizadas pela engenharia de tráfego para contorná-los. Grandes metrópoles como São Paulo contam com inteligência de tráfego para entender melhor problemas de trânsito, demandas e as rotas de transportes coletivos e soluções mais robustas para cada um dos problemas citados.  
+Contextualizar e entender os desafios da mobilidade urbana e as soluções que já são utilizadas pela engenharia de tráfego para contorná-los. Grandes metrópoles como São Paulo contam com inteligência de tráfego para entender melhor problemas de trânsito, demandas e as rotas de transportes coletivos e soluções mais robustas para cada um dos problemas citados. Diversos trabalhos acadêmicos publicados também propõem soluções diversas para melhorar o transporte nas grandes cidades em contextos diferentes.
 
 
 \item \textbf{Revisão Bibliográfica} --
-Estudo de algoritmos e trabalhos que foram publicados previamente e que se propuseram a resolver algum problema de mobilidade urbana e de logística com programação linear, heurística e meta-heurística. 
-Entender como a sociedade urbana se organiza em rede e como a topologia pode ser aplicada na região metropolitana de São Paulo.  A ideia de rede pode ser analisada a partir da metodologia de agregar insumos de uma mesma natureza ou de naturezas diferentes. ``A rede é o próprio tecido constitutivo da sociedade, engendrando desde as redes sociais pessoais'' \cite{inojosa}
-Analisar as diferentes formas de armazenar pontos e rotas georreferenciadas. Estruturar indexação dos dados.
+Estudar métodos para soluções de problemas de mobilidade urbana, logística, heurística e meta-heurística que já foram publicados e contextualizá-los com o problema deste trabalho. Entender como a sociedade urbana se organiza em rede e como a topologia pode ser aplicada na locomoção diária de uma metrópole como São Paulo.  A ideia de rede pode ser analisada a partir da metodologia de agregar insumos de uma mesma natureza ou de naturezas diferentes. ``A rede é o próprio tecido constitutivo da sociedade, engendrando desde as redes sociais pessoais'' \cite{inojosa}. Analisar as diferentes formas de armazenar e indexar pontos e rotas georreferenciadas.
 
 \item \textbf{Definição e implementação do protótipo} --
-Modelar as variáveis de decisão, as restrições e modelo de relação entre veículos, rotas, motoristas, passageiros e pontos. Definição de tecnologias que serão utilizadas e do método de desenvolvimento do protótipo.
+Modelar os casos de uso, as variáveis de decisão, as restrições e modelo de relação entre veículos, rotas, motoristas, passageiros e pontos. Definição de tecnologias que serão utilizadas e do método de desenvolvimento do protótipo.
 
 \item \textbf{Planejamento e execução de testes} --
 Criar a massa de testes para medir a eficiência do protótipo com simulações e interpretar seus resultados.
@@ -90,16 +94,20 @@ Analisar os resultados fornecidos pelos testes e verificar se cumprem os requisi
 \end{enumerate}
 
 \section{Organização do Texto}
-O projeto é apresentado em 4 capítulos, referências bibliográficas e os anexos.
 
-No primeiro capítulo, Introdução, descreve-se a problemática, motivação, objetivos gerais e específicos e a metodologia de trabalho que será utilizada neste projeto. 
+O projeto é apresentado em 5 capítulos, referências bibliográficas e os anexos.
 
-No capítulo 2, Revisão Bibliográfica, é apresentada a fundamentação teórica que
-abordará a complexidade dos problemas de roteamento de veículos, seja no contexto de logística para entregas ou para transporte de passageiros e suas propostas de melhorias. Também será discutido problemas de mobilidade, soluções de engenharia de tráfego e a segmentação de passageiros.
+No capítulo 1, Introdução, são apresentados  a problemática, motivação, objetivos gerais e específicos e a metodologia de trabalho que será utilizada neste projeto.
 
-Por fim, no capítulo 4, será exposta a análise crítica do problema, quais são os pontos de melhorias para trabalhos futuros. 
+No capítulo 2, Revisão Bibliográfica, serão apresentados a Fundamentação Teórica que abordará a complexidade dos problemas de roteamento de veículos, seja no contexto de logística para entregas ou para transporte de passageiros e os trabalhos relacionados ao tema proposto. 
 
+No capítulo 3, Desenvolvimento, serão apresentados o trabalho de pesquisa e o processo de desenvolvimento do protótipo.
 
+No capítulo 4, Resultados Obtidos, serão apresentados os testes para aplicação no protótipo e seus resultados, a fim de interpretá-los  
+
+Por fim, no capítulo 5, Conclusão, será exposta a análise crítica do problema, os objetivos atingidos e quais são os pontos de melhorias para trabalhos futuros.
+
+\newpage
 \section{Cronograma}
 O cronograma é apresentado com a distribuição das atividades propostas no Método de Trabalho \ref{metodo-trabalho}.
 
