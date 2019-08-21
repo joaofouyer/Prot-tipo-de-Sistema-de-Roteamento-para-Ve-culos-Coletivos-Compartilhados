@@ -1,20 +1,33 @@
 \apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 \emergencystretch=2pt
-% \nocite{*}
-% \nocite{BRANDAO2004552}
+\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{3}DESENVOLVIMENTO}{}}
+\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{4}RESULTADOS OBTIDOS}{}}
+\addtocontents{toc}{\protect\contentsline{chapter}{\protect\numberline{5}CONCLUSÃO}{}}
 
 \renewcommand\bibname{REFERÊNCIAS}
+\addcontentsline{toc}{chapter}{\bibname}
 \bibliography{main/referencias}
+
+
+
+\addcontentsline{toc}{chapter}{ANEXO}
+\chapter*{ANEXO}
+\fancyhead[L]{\emph{\cabecalho\nouppercase Anexo}}
+\fancyhead[R]{\cabecalho\thepage}
+\fancypagestyle{plain}{
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\cabecalho\thepage}
+}
+\input{capitulos/anexo}
+\clearpage
 
 % \clearpage
 % \thispagestyle{empty}
 % \centering GLOSSÁRIO
 % \addcontentsline{toc}{chapter}{GLOSSÁRIO}
 
-\clearpage
-\chapter*{ANEXO}
-\addcontentsline{toc}{chapter}{ANEXO}
-\input{capitulos/anexo}
+
 % \clearpage
 % \thispagestyle{empty}
 % \centering APÊNDICE

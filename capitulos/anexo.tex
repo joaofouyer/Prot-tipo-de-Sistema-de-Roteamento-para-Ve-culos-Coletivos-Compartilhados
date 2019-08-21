@@ -1,6 +1,9 @@
-\section*{Anexo 1 -- Tabela de indicadores de qualidade do serviço}
+\section*{Anexo A -- Tabela de Indicadores de Qualidade do Serviço}
+\label{anexo-tabela-indicadores}
 \input{tabelas/tabela-transporte-urbano.tex}
-\section*{Anexo 2 -- Métodos Exatos Utilizados no VRP }
+
+\chapter*{Anexo B -- Métodos Exatos Utilizados no VRP}
+\label{anexo-metodos-exatos}
 \subsection*{Branch-and-bound}
 Esta estratégia consiste em solucionar problemas de otimização com restrições de variáveis inteiras. A partir de um problema inicial, é criada uma série de ramificações (\emph{Branch}) das restrições (\emph{Bound}) que existem neste problema, de modo que, as restrições não permitam uma solução parcial do problema. Esta estratégia monta uma árvore de decisão com base em limites superiores e inferiores, impedindo que algumas soluções ruins sejam exploradas. Este método pode ser utilizado com outros métodos de programação linear, como por exemplo, o SIMPLEX \cite{LAPORTE1992345}. O \emph{Branch-and-Bound} elimina ramificações de restrições caso se encontre uma das condições:
 
@@ -16,10 +19,9 @@ Esta estratégia é uma melhoria do algoritmo \emph{Branch-and-bound}. Nela, oco
 \subsection*{Branch-and-price}
 Em casos de problemas de otimização com variáveis integrais, onde se considera todas as variáveis do problema simultaneamente, torna-se inviável a utilização das estratégias anteriores. Visto esse tipo de problema, foi criada uma técnica chamada de Geração de Colunas, com intuito de resolver esse tipo de problema. A técnica visa selecionar variáveis com o maior potencial para otimizar o problema. A estratégia \emph{Branch-and-price} é uma versão da estratégia \emph{Branch-and-bound}, que utiliza a Geração de Colunas  em cada nó da árvore de decisão.
 
-\section*{Anexo 3 -- Métodos Heurísticos Utilizados no VRP}
-
+\chapter*{Anexo C -- Métodos Heurísticos Utilizados no VRP}
+\label{anexo-metodos-heuristicos}
 \subsection*{Clarke e Wright}
-
 Esta foi uma estratégia extremamente importante para o desenvolvimento dos algoritmos voltados ao VRP, este algoritmo serviu como base para a construção de outros algoritmos sofisticados de roteamento de rotas e veículos \cite{milton-nascimento}. O algoritmo cria grafos contendo os clientes e possíveis rotas, já o depósito é lido a partir de alguma estrutura de armazenamento, então, são calculadas \emph{n-1} rotas de um cliente ao depósito onde n é o número de nós do grafo. A partir destes pares de nós, é calculado  o custo da rota a partir da fórmula \cite[p. 32]{maxwell}: 
 
 \[ s_{ij} = c_{i0} + c_{0j} - c_{ij} \]
@@ -27,7 +29,6 @@ Esta foi uma estratégia extremamente importante para o desenvolvimento dos algo
 Onde $s_{ij}$ representa a economia com relação aos nós \emph{i} e \emph{j}, e $c_{ij}$ representa o custo de se ir do nó \emph{i} ao nó \emph{j}. As economias são colocadas, em ordem decrescente, em uma tabela após o cálculo. 
 
 O algoritmo de \emph{Clark e Wright} é resolvido em tempo polinomial, pois, a complexidade é da ordem $\mathcal{O}(n^2)$. Há, no entanto, uma desvantagem de se usar a estratégia de \emph{Clark e Wright}, pois o algoritmo descartará todos os nós que não se encontram nos extremos das rotas, ou seja, os nós internos não entram na tabela de economia.
-
 \subsection*{Mole e Jameson}
 
 A estratégia de \emph{Mole e Jameson} é uma melhoria do algoritmo de \emph{Clark e Wright}, ele tem como um ponto forte, considerar os nós internos que são descartados no teste de economia do algoritmo de \emph{Clark e Wright}. O algoritmo começa carregando o grafo a partir de uma matriz de adjacências e de uma lista de nós livres (nós que não pertencem à nenhuma rota). Posteriormente, é construído um grafo que não contém o nó do depósito a partir da matriz de adjacências e da lista de nós livres. A partir de algum critério pré-definido, um par de nós é escolhido para ser a rota inicial. Após definida a rota inicial, um laço começará a inserir os nós na rota, seguindo dois critérios: O de \textbf{Proximidade} e o de \textbf{Economia}.
@@ -42,8 +43,8 @@ Onde $c_{ik}$ representa o custo entre os nós \emph{i} e \emph{k}, $c_{kj}$  re
 
 Onde \(\mu 0k\) representa a distância entre o depósito e o nó $l$. O local selecionado representa o que tem mais economia.
 
-\section*{Anexo 4 -- Métodos Meta-Heurísticos Utilizados no VRP}
-
+\chapter*{Anexo D -- Métodos Meta-Heurísticos Utilizados no VRP}
+\label{anexo-metodos-metaheuristicos}
 \subsection*{Busca Tabu}
 
 A etimologia da palavra \emph{tabu} tem origem do \emph{Tongan}, idioma falado em Tonga, na Polinésia e indica algo proibido por ser sagrado e que não pode ser tocado ou mencionado. O algoritmo da busca tabu é assim nomeado por ser composto de estratégias que permitem \emph{proibir} determinadas ações durante a varredura de vizinhanças e a escolha de soluções.
@@ -118,4 +119,11 @@ Algoritmos de Colônia de Formigas seguem algumas características importantes:
     \item Estes movimentos são feitos de acordo com probabilidade que leva em consideração informações da própria formiga (memória simples de ações locais) e da trilha de feromônio (ações globais)
 \end{itemize}
 
+\chapter*{ANEXO E -- K- Nearest Neighbor}
+\label{anexo-k-nearest}
+Para realizar o agrupamento de candidatos a serem integrados numa possível rota, a partir do ponto de origem do motorista, é possível utilizar um algoritmo de \emph{ Supervised Machine-Learning }chamado \emph{K-Nearest Neighbour}(KNN). O algoritmo tem o seguinte funcionamento:
+
+A ideia principal do algoritmo é resolver problemas de classificação e regressão. Por ser supervisionado, ele necessita de interação humana no recebimento de entradas e retroalimentação de dados para melhorar seu desempenho. O KNN faz o agrupamento dos dados tendo o princípio inicial de que dados semelhantes têm maior proximidade (funções de distância euclidiana), tendo isso, a classificação ocorre de modo que K é o número de dados a serem avaliados para o agrupamento do KNN. Por ser um algoritmo que requer retroalimentação de dados, é necessário várias execuções para se atingir um valor de K que seja adequado ao problema.
+
+Colocando o KNN no contexto do projeto, é possível realizar a classificação por  proximidade a partir de pontos geográficos do mapa, que no caso, seriam a semelhança entre os usuários. Após a comparação dos dados é definido a distância entre eles, e assim, o KNN vai classificando-os e agrupando-os por regiões de origem e destino semelhantes.
 \input{tabelas/colonia-relacionados}
