@@ -29,29 +29,39 @@ A tecnologia da informação e métodos computacionais podem servir de apoio par
 
 \section{Objetivos}
 
-Nas subseções a seguir, serão apresentados o objetivo geral e os objetivos específicos deste trabalho. 
+Problemas de roteamento de veículos em geral são multiobjetivo \cite[p. 279]{goldbarg}.
+Nas subseções a seguir, serão apresentados o objetivo geral, os objetivos específicos e as restrições deste trabalho. 
 
 \subsection{Objetivo Geral}
 
-Desenvolver um protótipo de roteamento de veículos para o transporte de passageiros utilizando métodos de solução de problemas que já foram empregados neste contexto. Levando em consideração que o Problema do Caixeiro Viajante abrange estas classes de soluções, ele será utilizado como ponto de partida para a formulação do protótipo.
+Desenvolver um protótipo de roteamento de veículos para o transporte de passageiros em veículos compartilhados, objetivando minimizar o custo da atividade. O custo da atividade é determinado pela somatória das estimativas de distância e de tempo associados ao percurso. 
 
 \subsection{Objetivos Específicos}
 Nos objetivos específicos deste trabalho pretende-se:
 \begin{itemize}
     
-    \item Agrupar passageiros que possam convergir em uma rota a fim de minimizar o número de assentos livres por viagem e respeitando a capacidade do veículo;
+    \item Agrupar passageiros que possam convergir em uma rota respeitando a capacidade do veículo;
     
-    \item Indicar os pontos de embarque e desembarque de cada passageiro respeitando o limite máximo de deslocamento necessário a partir da origem/destino até o ponto de embarque e a partir do ponto de desembarque até a origem/destino;
+    \item Maximizar o número de passageiros em uma mesma rota;
     
-    \item Ordenar os pontos de embarque e desembarque a fim de diminuir o tempo do trajeto e a distância percorrida pelo veículo;
+    \item Determinar pontos de embarque e desembarque dos passageiros;
     
-    \item Formular um protótipo para buscar a distância e o tempo de deslocamento real entre os pontos de embarque e desembarque;
+    \item Determinar horários de embarque e desembarque dos passageiros;
     
-    \item Definir os horários de embarque e desembarque dos pontos de acordo com a estimativa de tempo, respeitando a janela de horário de cada passageiro;
+    \item Atualizar a rota de acordo com as solicitações de inclusão ou cancelamento.
     
-    \item Atualizar e adequar a rota de acordo com entrada e a saída de passageiros.
+\end{itemize}
+
+\subsection{Restrições}
+As condições restritivas deste trabalho envolvem as decisões táticas escolhidas para o sistema de roteamento de veículos. Sendo elas:
+\begin{itemize}
+    \item Localizar a área delimitadora para o embarque do passageiro;
     
-    \item Validar o modelo desenvolvido por meio de método computacional, em um problema real.
+    \item Localizar a área delimitadora para o desembarque do pasageiro;
+    
+    \item Verificar a capacidade do veículo para todos os passageiros viajarem sentados;
+    
+    \item Definir o número de veículos que irá atender a linha criada;
     
 \end{itemize}
 
@@ -60,7 +70,7 @@ A partir da Emenda Constitucional número 90 de 2015 \cite{pec}, o transporte é
  
 No caso do município de São Paulo, o valor orçado para a secretaria de transportes urbanos em 2019 foi de aproximadamente R\$ 3,4 bilhões \cite{loatrans}. O alto investimento não é justificado em melhoria na qualidade do serviço, mas pode ser atribuído a diversos fatores, como a falta de trabalhadores qualificados e de recursos necessários para planejar e gerenciar a rede de transporte, que inclui estabelecer o itinerário e horário das rotas de ônibus de acordo com a demanda, designar e atribuir os veículos às rotas, considerando o custo, a segurança, o tempo de deslocamento e a capacidade dos veículos \cite{lima2016mixed}.
 
-Por outro lado, ambos Governo do Estado e da Cidade de São Paulo, facilitam a coleta e contextualização de informações referentes ao transporte e locomoção na região metropolitana de São Paulo através de pesquisas realizadas e de ferramentas disponíveis para demais pesquisadores. São exemplos a pesquisa de Origem e Destino realizada pelo Metrô de São Paulo (Companhia do Metropolitano de São Paulo, \citeyear{odpq}), a interface para acesso à informação para desenvolvedores fornecida pela SPTrans \cite{sptranspq} e a composição do estudo tarifário que é realizado anualmente \cite{tarifapq}. Além disto, em face dos desafios de mobilidade urbana e do esforço coletivo em superá-los, o Governo do Estado criou um programa exclusivo de Parceria Público-Privada (PPP) para mobilidade na região metropolitana (Governo do Estado de São Paulo, \citeyear{ppppq}).
+Por outro lado, ambos Governo do Estado e da Cidade de São Paulo, facilitam a coleta e contextualização de informações referentes ao transporte e locomoção na região metropolitana de São Paulo através de pesquisas realizadas e de ferramentas disponíveis para demais pesquisadores. São exemplos a pesquisa de Origem e Destino realizada pelo Metrô de São Paulo (METRÔ, \citeyear{odpq}), a interface para acesso à informação para desenvolvedores fornecida pela SPTrans \cite{sptranspq} e a composição do estudo tarifário que é realizado anualmente \cite{tarifapq}. Além disto, em face dos desafios de mobilidade urbana e do esforço coletivo em superá-los, o Governo do Estado criou um programa exclusivo de Parceria Público-Privada (PPP) para mobilidade na região metropolitana (GESP, \citeyear{ppppq}).
 
 Este esforço coletivo também é evidente em organizações não-governamentais e em setores privados. A Rede Nossa São Paulo, por exemplo, possui pesquisas que tangem o assunto sob diferentes aspectos \cite{redepq}. São Paulo é a única cidade brasileira no Movement \cite{uberpq}, plataforma da Uber que disponibiliza para gestores públicos e pesquisadores informações detalhadas sobre o tempo de locomoção de acordo com as viagens realizadas no serviço.
 
@@ -106,9 +116,3 @@ No capítulo 3, Desenvolvimento, serão apresentados o trabalho de pesquisa e o 
 No capítulo 4, Resultados Obtidos, serão apresentados os testes para aplicação no protótipo e seus resultados, a fim de interpretá-los  
 
 Por fim, no capítulo 5, Conclusão, será exposta a análise crítica do problema, os objetivos atingidos e quais são os pontos de melhorias para trabalhos futuros.
-
-\newpage
-\section{Cronograma}
-O cronograma é apresentado com a distribuição das atividades propostas no Método de Trabalho \ref{metodo-trabalho}.
-
-\input{tabelas/cronograma} 
