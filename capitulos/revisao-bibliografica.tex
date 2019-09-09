@@ -20,8 +20,6 @@ Existem diversos atributos na relação do passageiro com o transporte público 
 
 No \nameref{anexo-tabela-indicadores}, consta a tabela \ref{cotran-table} que 
 relaciona o atributo do serviço com a sua definição e um indicador equivalente para a sua avaliação.
-
-Apesar da forte relação com o passageiro, as composições homologadas são de viés automotivo e não pensados no lado do usuário.
  
 Os atributos de tempo e capacidade dos veículos caracterizam o transporte urbano coletivo e estão ligados no projeto do veículo, que são prefixados pelos fabricantes. Para o passageiro,o aspecto conforto é composto por um veículo com pouca ocupação, garantindo que o passageiro estará sentado durante a viagem, mas o que também faz parte da satisfação do usuário é a extensão do deslocamento.
 
@@ -42,7 +40,8 @@ Assim, em relação ao transporte de passageiros, os princípios que devem estar
     \item \textbf{Modicidade}: serviços a preços razoáveis
 \end{itemize}
 
-Os atributos mencionados serão utilizados como restrições do projeto, para atingir os objetivos estabelecidos. 
+Os atributos mencionados serão auxiliarão a definir as restrições na hora de calcular a rota e para definir os objetivos que precisam ser atingidos.
+
 \begin{itemize}
 \item A permanência garante que o serviço prestado será do começo ao fim, sem integração de modais e com horários pré-estabelecidos com o usuário;
 \item A eficiência visa que o usuário terá seu assento reservado e uma previsão de tempo de chegada definida;
@@ -60,7 +59,7 @@ Já os problemas de otimização de natureza discreta podem ser solucionados por
 
 Problemas de Otimização Combinatória podem ser formulados como \((F, c)\) onde \(F\) é um conjunto de pontos possíveis; e \(c\) uma função de custo \cite{rodolfo}.
 
-\[c: F \longrightarrow R^1 \]
+\[c: F \longrightarrow R \]
 
 Onde o problema é encontrar um\(f \in F\) para qual
 
@@ -74,7 +73,7 @@ O Problema de Roteamento de Veículos (\emph{Vehicle Routing Problem} - VRP) é 
 
 O Problema de Roteamento de Veículos (VRP) foi introduzido na literatura em 1959 por Dantzig e Ramser \cite{toth}. O VRP tem sido, particularmente, um dos problemas mais abordados nas áreas de Otimização Combinatória e Pesquisa Operacional nas últimas décadas \cite{steiner2000problema}. E desde então, vários cenários foram derivados, como o roteamento para veículos de entrega, roteamento de veículos escolares ou o roteamento de veículos para transporte de passageiros no contexto urbano, que é o objeto de estudo do trabalho presente. De modo geral, consiste em definir rotas para cumprimento de demandas, considerando o número de veículos disponíveis e respeitando a capacidade de cada veículo.
 
-O Problema de Roteamento de Veículos Abertos (\emph{Open Veihicle Routing Problem} -- \emph{OVRP}) é uma das existentes derivações do \emph{VRP}. O \emph{OVRP} consiste em caminhos hamiltonianos, ou seja, apresenta um ciclo que percorre todos os vértices do grafo, para um conjunto de clientes atribuídos num mesmo veículo a partir de uma demanda total de todos os clientes de uma rota e que não deve exceder capacidade do veículo. Cada cliente é visitado apenas uma vez por um dos veículos. Porém, o \emph{OVRP} é dado como problema de coleta e entrega de carga e não propriamente de passageiros \cite{BRANDAO2004552}.
+O Problema de Roteamento de Veículos Abertos (\emph{Open Veihicle Routing Problem} -- \emph{OVRP}) é uma das existentes derivações do \emph{VRP}. Uma das soluções do OVRP consiste em ser resolvida por meio de um grafo, sendo ele definido por G = (V,E) onde V é um conjunto finito cujos elementos são denominados vértices e E é um conjunto de subconjuntos de dois elementos de V denominados arestas \cite{nogueira2015introduccao}. Desta forma, o \emph{OVRP} consiste em caminhos hamiltonianos, isto é, apresenta um ciclo que percorre todos os vértices do grafo, para um conjunto de clientes atribuídos num mesmo veículo a partir de uma demanda total de todos os clientes de uma rota e que não deve exceder capacidade do veículo.  Cada cliente é visitado apenas uma vez por um dos veículos. Porém, o \emph{OVRP} é dado como problema de coleta e entrega de carga e não propriamente de passageiros \cite{BRANDAO2004552}.
 
 No problema em questão, a partir de passageiros coincidentes de uma região, o objetivo é transportá-los para um local próximo ao seu destino, minimizando custos e melhorando frotas para atendimento de regiões condizentes. 
 
@@ -82,31 +81,17 @@ Tendo em vista ser um problema de otimização e combinatória, há diversas man
 
 Por fim, sabe-se que no contexto do problema de roteamento de veículos, muitas vezes ainda não existem técnicas computacionais capazes de garantir que o caminho encontrado será o menor ou o mais rápido em um tempo polinomial, classificando este tipo de problema como NP-Difícil. Desta forma, a solução encontrada pode não ser ótima global, mas sim a local.
 
-\begin{comment}
-\subsection{NP-Completo e NP-Difícil} \label{classes-np}
-A classe NP (\emph{nondeterministic polynomial time}) é a classe de linguagens decidíveis que podem ser verificadas por um algoritmo em tempo polinomial. O problema do Caixeiro Viajante, por exemplo, tem complexidade $\mathcal{O}(n!)$, porém essa complexidade pode ser diminuída até  $\mathcal{O}(n^22^n)$ \cite[p. 405]{ziviani} com programação dinâmica que é um método para construir algoritmos no contexto de resolver problemas computacionais. Vejamos qual a diferença entre a classe NP-Completo e NP-Difícil. A definição de acordo com Ziviani é de que ``Apenas problemas de decisão (“sim/não”) podem ser \emph{NP-Completo}.'' \cite[p. 415]{ziviani}
-
-Assim, se um problema da classe \emph{NP-Completo} pode ser resolvido em tempo polinomial a partir de uma máquina determinística, então todos os problemas da classe podem. Isto é, a classe \emph{P}, que é constituída pelos problemas de decisão limitados polinomialmente., é igual a classe \emph{NP}. Essa afirmação ainda não foi comprovada com nenhum problema da classe \emph{NP-Completo}.
-
-\begin{quote}
-Um problema A pertence a classe \emph{NP-Difícil} se existe um problema $B \in $ \emph{NP-Completo} que pode ser transformado em A em tempo polinomial. Portanto, a única diferença com relação à classe \emph{NP-Completo} é que A não é provado ser \emph{NP}.
-\end{quote}
-\rightline{ \cite[p. 4]{bueno}}
-
-Concluindo que o problema que pertence à classe \emph{NP-Difícil} não é provado ser resolvido em tempo polinomial. Problemas de otimização e combinatória para o \emph{VRP}, como o problema caixeiro viajante,  geralmente, pertencem a classe \emph{NP-Difícil}.
-\end{comment}
-
 \subsection{O Problema do Caixeiro Viajante}
 
 O problema do Caixeiro Viajante (\emph{Travelling Salesman/Salesperson Problem} -- \emph{TSP}) é um problema clássico de otimização e combinatória e está entre os antigos problemas já estudados na área. Foi formulado matematicamente pela primeira vez em 1932, por Karl Menger \cite{oliveira2015extensoes} e possui muitas variações.
-Este problema pode ser representado por grafo. Seja G = (V,E) um grafo, onde V é um conjunto finito cujos elementos são denominados vértices e E é um conjunto de subconjuntos de dois elementos de V denominados arestas \cite{nogueira2015introduccao}. Para o TSP as cidades são os vértices e as ligações entre as cidades são as arestas do grafo. Para formulação do problema, dado um conjunto de cidades é \emph{``como o caixeiro passaria por todas as cidades, uma única vez com o menor trajeto possível?''} A resposta dessa questão, com o caixeiro retornando para a cidade de origem, gera uma ordenação das cidades que o caixeiro deve percorrer. Sua variante mais conhecida é a descrita acima, também conhecido como \emph{TSP com retorno}. Caso não faça parte da solução retornar para a cidade inicial, a variante é conhecida como \emph{TSP sem retorno}, sendo a variante que será utilizada neste trabalho. 
+Este problema pode ser representado por grafo. Para o TSP as cidades são os vértices e as ligações entre as cidades são as arestas do grafo. Para formulação do problema, dado um conjunto de cidades é \emph{``como o caixeiro passaria por todas as cidades, uma única vez com o menor trajeto possível?''} A resposta dessa questão, com o caixeiro retornando para a cidade de origem, gera uma ordenação das cidades que o caixeiro deve percorrer. Sua variante mais conhecida é a descrita acima, também conhecido como \emph{TSP com retorno}. Caso não faça parte da solução retornar para a cidade inicial, a variante é conhecida como \emph{TSP sem retorno}, sendo a variante que será utilizada neste trabalho. 
 
 
 \subsection{Técnicas Computacionais para Resolução de Problemas de Otimização Combinatória}
 \label{tecnicas-computacionais}
 O desenvolvimento da capacidade de processamento dos computadores nos últimos anos tem servido de suporte para a solução -- mesmo que parcial -- de problemas de Otimização Combinatória, algumas vezes envolvendo centena de milhares de variáveis e restrições.
 
-Diferentes soluções podem ser utilizadas para o VRP, que fundamentalmente a literatura os separa entre três principais abordagens: Métodos Exatos, Métodos Heurísticos e Meta-Heurísticos \cite{maxwell}. \begin{comment}
+Diferentes soluções podem ser utilizadas para o VRP.  Fundamentalmente a literatura os separa entre três principais abordagens: Métodos Exatos, Métodos Heurísticos e Meta-Heurísticos \cite{maxwell}. \begin{comment}
 Antes mesmo de abordar os métodos de soluções do VRP, é necessário entender as classes que os algoritmos de roteamento podem pertencer e, assim, será possível escolher os melhores candidatos para a solução do problema proposto.
 \end{comment} 
 Nas subseções seguintes, um levantamento dos métodos mais frequentes para a solução foi realizado a fim de guiar na decisão da escolha da abordagem para resolver o problema proposto pelo trabalho.
@@ -127,7 +112,7 @@ Em métodos exatos uma varredura é realizada sobre todo o domínio de busca das
 São apresentados alguns métodos exatos mais citados pela literatura para resolver o VRP no \nameref{anexo-metodos-exatos}.
 
 \subsection{Métodos heurísticos}\label{heuristica}
-A etimologia da palavra \emph{heurística} tem origem do verbo grego \emph{heuriskein} -- cuja conjugação na primeira pessoa é \emph{eureka} -- que significa descobrir. No entanto, quando a palavra é empregada no contexto de métodos para a solução de problemas de Otimização Combinatória, o seu sentido pode ser ampliado conforme, por exemplo, a definição de Kendra van Wagner-Cherry \emph{``Uma heurística é um atalho mental que permite às pessoas resolver problemas e fazer julgamentos rápida e eficientemente.''} \cite{goldbarg}
+A etimologia da palavra \emph{heurística} tem origem do verbo grego $\varepsilon \upsilon \rho \iota \sigma \kappa \omega$ (\emph{heuriskō}) -- cuja conjugação na primeira pessoa é  $\varepsilon \upsilon \rho 	\eta \kappa \alpha$ (\emph{heúrēka}) -- que significa descobrir. No entanto, quando a palavra é empregada no contexto de métodos para a solução de problemas de Otimização Combinatória, o seu sentido pode ser ampliado conforme, por exemplo, a definição de Kendra van Wagner-Cherry \emph{``Uma heurística é um atalho mental que permite às pessoas resolver problemas e fazer julgamentos rápida e eficientemente.''} \cite{goldbarg}
 
 
 Métodos heurísticos são aqueles que garantem um bom tempo computacional, porém, não garantem uma solução ótima em todos os casos que atuam. No caso de uma aplicação, uma aproximação heurística traz o benefício do tempo de processamento, uma vez que uma solução ótima, com alto tempo de processamento, deixa de ser uma boa solução para o usuário. 
@@ -168,16 +153,16 @@ São detalhados alguns destes métodos meta-heurísticos mais citados pela liter
 
 Georreferenciamento é a prática de obter determinado local (ou ponto) no mapa e inserir suas coordenadas em um sistema de referências planas. No contexto de Georreferenciamento, os pontos escolhidos para a extração das coordenadas são chamados de Pontos de Controle. As coordenadas reais dos pontos de controle (verdade terrestre) podem ser obtidas em trabalho de Campo (Lev. Topográfico, GPS, mapas em papel ou digitais georreferenciados) \cite{georreferenciamento}.
 
-O \emph{Google} fornece uma vasta gama de ferramentas de geolocalização que contribuem para o desenvolvimento de vários aplicativos e softwares que tem como objetivo guiar o usuário de alguma forma à um destino. Dentre elas, temos algumas \emph{APIs} que se destacam quando se tem como objetivo, criar uma plataforma de roteamento veicular, sendo elas:
+O \emph{Google} fornece uma vasta gama de ferramentas de geolocalização que contribuem para o desenvolvimento de vários aplicativos e softwares com o objetivo guiar o usuário de alguma forma a um destino. Dentre elas, temos algumas \emph{APIs} que se destacam quando se tem como objetivo criar uma plataforma de roteamento veicular, sendo elas:
 \begin{itemize}
-    \item \textbf{Google Places API} -- É um serviço que retorna informações sobre um lugar a partir de requisições HTTP,  os lugares são definidos nessa API como estabelecimentos, localizações geográficas ou pontos de interesse proeminentes;
+    \item \textbf{Google Places API} -- É um serviço que fornece informações sobre um lugar a partir de requisições HTTP,  os lugares são definidos nessa API como estabelecimentos, localizações geográficas ou pontos de interesse proeminentes;
     \item \textbf{Google Directions API} -- Fornece rotas de transporte público, bicicleta, carro e a pé. Calcula os tempos de deslocamento atuais ou futuros com base no trânsito em tempo real;
     \item \textbf{Google Distance Matrix API} -- Fornece tempos de deslocamento e distâncias para um ou mais locais.;
     \item \textbf{Google Geocoding API} -- Transforma dados de endereço de ruas em dados de altitude e latitude;
     \item \textbf{Google Maps Embed API} -- Realiza a inclusão de uma interface gráfica de mapeamento da própria Google.
 \end{itemize}
 
-Esses serviços terão um papel importante no desenvolvimento da plataforma de roteamento de transportes coletivos. O uso dessas ferramentas facilita a entrada de informações na plataforma, e gera mais consistência na montagem da parte programática do projeto em questão.
+Esses serviços terão um papel importante no desenvolvimento da plataforma de roteamento de transportes coletivos. O uso dessas ferramentas facilita a entrada de dados na plataforma e gera mais consistência no desenvolvimento deste projeto.
 
 
 \begin{comment}
@@ -199,14 +184,6 @@ O algoritmo de \emph{Spectral Clustering} é dividido nos seguintes passos \cite
     \item Saída: Grupos $A_1,...,A_k$ com $A_i = {j |yj \in C_i}$.
 \end{enumerate}
 \end{comment}
-
-
-
-
-
-
-
-
 
 \section{Método de Desenvolvimento}
 \label{metodo-desenvolvimento}
@@ -267,12 +244,12 @@ Rosa \citeyear{maxwell} apresentou a metodologia para a resolução do problema 
     \item \textbf{Elaborar diagnóstico}: etapa fundamental para verificar a metodologia proposta. No caso do transporte de estudantes rurais, o diagnóstico é realizado através de parâmetros pré-estabelecidos que servem de comparação para o planejamento de ações pontuais ou globais de forma a melhorar o desempenho do sistema. De acordo com o Fundo Nacional do Desenvolvimento da Educação (FNDE), um planejamento deve considerar elementos físicos (vias, veículos), lógicos (legislação, estrutura normativa e de gestão) e os agentes (motorista e responsáveis). 
 \end{enumerate}
 
-Assim como no presente trabalho, o problema da dissertação também pertence à classe \emph{OVRP}, embora esteja contida especificamente na classe de problema de roteamento de veículos escolares (\emph{SBRP}). Outra semelhança é no modelo de planejamento das rotas que são fixas, ou seja, não são modificadas em tempo real. Entretanto, o problema é apresentado no contexto de locomoção rural do interior do Rio de Janeiro.
+Assim como no presente trabalho, o problema da dissertação também pertence à classe \emph{OVRP}, embora esteja contida especificamente na classe de problema de roteamento de veículos escolares (\emph{SBRP}). Outra semelhança é no modelo de planejamento das rotas que são fixas, ou seja, não são modificadas em tempo real. Caracterizando uma diferença entre os trabalhos, o problema é apresentado no contexto de locomoção rural do interior do Rio de Janeiro enquanto este projeto tem como foco a região metropolitana de São Paulo.
 
 
 \subsection{A survey of models and algorithms for optimizing shared mobility \cite{MOURAD2019323}}
 
-O artigo feito por \cite{MOURAD2019323} é uma referência importante para a resolução do VRP, os autores abordam exatamente a questão do problema emergente do aumento de número de veículos nas grandes cidades. O artigo traz resoluções para o problema de VRP em 2 aspectos: pré-organizado e em tempo-real. Pré-organizado é quando se tem informações  registradas previamente, ou seja, as informações de origem e destino são inseridas antes do cálculo da rota. Já em tempo-real, todas as variáveis de cálculo são coletadas em tempo de execução, neste contexto, tornando possível calcular mudanças repentinas na rota, como fechamento de vias, ou trânsito intenso em certas vias por exemplo. O artigo também mostra que a maioria das variantes do VRP trata-se de viagens com múltiplos passageiros, uma vez que um veículo que suporta mais pessoas traz maior diminuição de veículos nas ruas.
+O artigo feito por \cite{MOURAD2019323} é uma referência importante para a resolução do VRP em que os autores abordam exatamente a questão do problema emergente do aumento de número de veículos nas grandes cidades. O artigo traz resoluções para o problema de VRP em 2 aspectos: pré-organizado e em tempo-real. Pré-organizado é quando se tem informações  registradas previamente, ou seja, as informações de origem e destino são inseridas antes do cálculo da rota. Já em tempo-real, todas as variáveis de cálculo são coletadas em tempo de execução, neste contexto, tornando possível calcular mudanças repentinas na rota, como fechamento de vias, ou trânsito intenso em certas vias por exemplo. O artigo também mostra que a maioria das variantes do VRP trata de viagens com múltiplos passageiros, uma vez que um veículo que suporta mais pessoas traz maior diminuição de veículos nas ruas.
 A partir da variante dos problemas, se tem, também, uma variedade de restrições que são consideradas para cada caso do VRP, dentre elas tem se:
 
 \begin{itemize}
@@ -283,7 +260,7 @@ A partir da variante dos problemas, se tem, também, uma variedade de restriçõ
 \item Restrições de Sincronia -- Atendimento de demandas em tempo real
 \end{itemize}
 
- Além de avaliar o VRP em diferentes variantes do problema (diferentes veículos e demandas), há uma comparação bem ampla de resultados entre métodos heurísticos e exatos aplicados em simulação. No objetivo do projeto, trata-se da resolução pré-organizada, pois não é viável trabalhar com informações em tempo-real. Assim, é uma fonte comparativa para que seja possível entender qual método se aproxima mais do ideal para o contexto do protótipo. O projeto utiliza de restrições que estão dentro da categoria de informações pré-organizadas, nós utilizaremos as seguintes restrições para alcançar seu objetivo:
+ Além de avaliar o VRP em diferentes variantes do problema (diferentes veículos e demandas), há uma comparação bem ampla de resultados entre métodos heurísticos e exatos aplicados em simulação. Na delimitação deste trabalho, foi escolhido uma resolução pré-organizada ao invés de trabalhar com informações em tempo real. Assim, é uma fonte comparativa para que seja possível entender qual método se aproxima mais do ideal para o contexto do protótipo. O projeto utiliza de restrições que estão dentro da categoria de informações pré-organizadas, nós utilizaremos as seguintes restrições para alcançar objetivo:
 
 \begin{itemize}
 \item Restrições de Roteamento
@@ -298,17 +275,17 @@ Essas restrições são o suficiente para satisfazer uma viagem pré-organizada 
  \subsection{Algoritmos de Solução para o Problema do Caixeiro Viajante com Passageiros e Quota \cite{silva2017algoritmos}}
  
 A dissertação de mestrado de Jean Gleisson apresenta Algoritmos de Solução para o Problema do Caixeiro Viajante com Passageiros e Quota (\emph{PCVPQ}), sendo uma derivação no problema de roteamento de veículo. A dissertação tem como objetivo reduzir o custo total da viagem compartilhando o custo entre os passageiros que solicitam a carona, porém com o enfoque na soma mínima de quotas coletadas nas cidades visitadas pelo caixeiro. A quota é o valor do custo monetário de deslocamento entre as cidades que será dividida igualmente entre os ocupantes, inclusive o motorista.
-Existem algumas restrições que devem ser respeitadas, como: O motorista é livre para decidir em quais cidades irá visitar; o custo da viagem não pode ultrapassar o valor máximo fixado pelo próprio passageiro e não é levado em consideração a duração da viagem, tempo que permanecerá nas localidades ou o número de cidades que serão visitadas durante a viagem e não haverá uma coleta bônus na cidade de origem do caixeiro.
-Na proposta apresentada nesta dissertação, o grafo considerado $G = (N, M, B)$, onde:
+Existem algumas restrições que devem ser respeitadas, como: O motorista é livre para decidir quais cidades irá visitar; a quota da viagem não pode ultrapassar o valor máximo fixado pelo próprio passageiro e não é levada em consideração a duração da viagem, tempo que permanecerá nas localidades ou o número de cidades que serão visitadas durante a viagem e não haverá uma coleta de bônus na cidade de origem do caixeiro.
+Na proposta apresentada nesta dissertação, foi considerado o grafo $G = (N, M, B)$, onde:
 
 $N$ é o conjunto de vértices que representam as cidades;
-$M$ é o conjunto de arestas que representam as rodovias que ligam as cidades, onde, também, há um custo associado à aresta cujo valor é o custo de deslocamento entre as cidades;
+$M$ é o conjunto de arestas que representam as rodovias que ligam as cidades, onde também há um custo associado à aresta cujo valor é o custo de deslocamento entre as cidades;
 $B$ é o bônus associado a cada cidade, que será coletado no momento que ocorre a visita da cidade.
 
 Para a solução, o autor estudou os seguintes métodos:
 A heurística de carregamento ótimo (\emph{NAIVE}) visa obter a rota de menor custo possível, e para essa rota, obter o embarque ótimo para o carro.
 A metaheurística \emph{GRASP} para o \emph{PCVPQ} descrito consiste na utilização de uma roleta para selecionar os vértices de acordo com o seu bônus e os incorporando à rota.
-As variações de algoritmos genéticos com mutação e meméticos foram estudadas com o objetivo de que as mutações sejam aplicadas para minimizar a quota durante a execução da rota.
+As variações de algoritmos meméticos e genéticos com mutação foram estudadas com o objetivo de que as mutações sejam aplicadas para minimizar a quota durante a execução da rota.
 
 Como conclusão, o autor encerra dando a ênfase no problema, pois tem potencial para ser aplicado em sistemas de otimização de transporte colaborativo e os melhores desempenhos qualitativos foram alcançados pelos algoritmos \emph{GRASP}, \emph{MEM-SPLIT} e \emph{MEM-SCX}, destacando-se o \emph{GRASP} com o melhor tempo.
 
@@ -316,9 +293,6 @@ Assim como no trabalho mencionado, temos como objetivo o transporte coletivo de 
 \begin{itemize}
     \item As cidades visitadas pelo motorista, para que haja compatibilidade de passageiros da mesma região;
     \item Atender um grande número de pessoas num mesmo veículo e reduzir o tempo da viagem dos passageiros; 
-    
-    \begin{comment}
-e então, a quota não será levado como prioridade, pois será uma consequência do uso do transporte coletivo compartilhado\end{comment}
     \item O tempo de viagem total, assim teremos como uma meta a viagem ser confortável para o passageiro.
 \end{itemize}
 

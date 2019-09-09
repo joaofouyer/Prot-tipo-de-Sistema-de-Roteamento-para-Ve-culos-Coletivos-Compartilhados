@@ -20,7 +20,7 @@
 \algrenewtext{For}[3]%
 {\algorithmicfor\ #1 $\gets$ #2 \algorithmicto\ #3 \algorithmicdo}
 \begin{algorithm}
-\caption{Pseudocódigo da busca tabu \cite[p. 89]{goldbarg}} 
+\caption{Busca tabu \cite[p. 89]{goldbarg}} 
 \begin{algorithmic}[1]
 \item \textbf{gerar} uma solução inicial \emph{s}, e fazer \emph{s}* := \emph{s}
 \item \textbf{inicializar} a Lista Tabu (T)
@@ -48,5 +48,6 @@
     \State{$q \gets q+1$}
 \EndWhile
 \item \textbf{Devolver} a solução \emph{s}*
+\label{pseudocodigo-busca-tabu}
 \end{algorithmic}
 \end{algorithm}
