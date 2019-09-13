@@ -36,7 +36,7 @@ Para realizar o cálculo da \textbf{Proximidade} dos nós é utilizada a seguint
 
 \[\alpha(i, k, j) = c_{ik} + c_{kj} - \lambda c_{ij} \]
 
-Onde $c_{ik}$ representa o custo entre os nós \emph{i} e \emph{k}, $c_{kj}$  representa o custo entre os nós \emph{l} e \emph{j}. Se nenhuma violação for quebrada, o nó com menor distância será inserido na rota. O cálculo da economia é aquele que apontará qual o melhor lugar para o nó ser inserido, este cálculo é dado por:
+Onde $c_{ik}$ representa o custo entre os nós \emph{i} e \emph{k}, $c_{kj}$  representa o custo entre os nós \emph{l} e \emph{j}. O parâmetro $\lambda$ permite que se altere o comportamento do algoritmo em diversas formas, atuando como um peso. Se nenhuma violação for quebrada, o nó com menor distância será inserido na rota. O cálculo da economia é aquele que apontará qual o melhor lugar para o nó ser inserido, este cálculo é dado por:
 
 \[\beta(i, k, j) = \mu 0k - \alpha(i, k, j) \]
 

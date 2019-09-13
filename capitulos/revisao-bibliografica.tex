@@ -77,7 +77,7 @@ O Problema de Roteamento de Veículos Abertos (\emph{Open Veihicle Routing Probl
 
 No problema em questão, a partir de passageiros coincidentes de uma região, o objetivo é transportá-los para um local próximo ao seu destino, minimizando custos e melhorando frotas para atendimento de regiões condizentes. 
 
-Tendo em vista ser um problema de otimização e combinatória, há diversas maneiras de solução, seja com algoritmos gulosos ou por soluções exatas, heurísticas e metaheurísticas. Antes mesmo de entender os tipos de soluções, existe as classes que os algoritmos podem pertencer e, assim, é possível decidir qual deles é mais adequada de acordo com a solução para o seu problema.
+Tendo em vista ser um problema de otimização e combinatória, há diversas abordagens para a sua solução, seja com algoritmos gulosos ou por soluções exatas, heurísticas e metaheurísticas. Primeiro será realizada uma descrição das diferentes abordagens, seus prós e contras e depois os principais algoritmos citados na literatura em cada uma delas, de forma que seja possível decidir qual deles é mais adequado de acordo com a solução para o seu problema e o candidato para aplicar no protótipo.
 
 Por fim, sabe-se que no contexto do problema de roteamento de veículos, muitas vezes ainda não existem técnicas computacionais capazes de garantir que o caminho encontrado será o menor ou o mais rápido em um tempo polinomial, classificando este tipo de problema como NP-Difícil. Desta forma, a solução encontrada pode não ser ótima global, mas sim a local.
 
@@ -111,8 +111,11 @@ Em métodos exatos uma varredura é realizada sobre todo o domínio de busca das
 
 São apresentados alguns métodos exatos mais citados pela literatura para resolver o VRP no \nameref{anexo-metodos-exatos}.
 
+%βρίσκω%
+%$\varepsilon \upsilon \rho \iota \sigma \kappa \omega$
 \subsection{Métodos heurísticos}\label{heuristica}
-A etimologia da palavra \emph{heurística} tem origem do verbo grego $\varepsilon \upsilon \rho \iota \sigma \kappa \omega$ (\emph{heuriskō}) -- cuja conjugação na primeira pessoa é  $\varepsilon \upsilon \rho 	\eta \kappa \alpha$ (\emph{heúrēka}) -- que significa descobrir. No entanto, quando a palavra é empregada no contexto de métodos para a solução de problemas de Otimização Combinatória, o seu sentido pode ser ampliado conforme, por exemplo, a definição de Kendra van Wagner-Cherry \emph{``Uma heurística é um atalho mental que permite às pessoas resolver problemas e fazer julgamentos rápida e eficientemente.''} \cite{goldbarg}
+A etimologia da palavra \emph{heurística} tem origem do verbo grego $\beta \rho \iota \sigma \kappa \omega$
+(\emph{evrísko}) -- cuja conjugação na primeira pessoa é  $\varepsilon \upsilon \rho 	\eta \kappa \alpha$ (\emph{heúrēka}) -- que significa descobrir. Quando a palavra é empregada no contexto de métodos para a solução de problemas de Otimização Combinatória, o seu sentido pode ser ampliado conforme, por exemplo, a definição de Kendra van Wagner-Cherry \emph{``Uma heurística é um atalho mental que permite às pessoas resolver problemas e fazer julgamentos rápida e eficientemente.''} \cite{goldbarg}
 
 
 Métodos heurísticos são aqueles que garantem um bom tempo computacional, porém, não garantem uma solução ótima em todos os casos que atuam. No caso de uma aplicação, uma aproximação heurística traz o benefício do tempo de processamento, uma vez que uma solução ótima, com alto tempo de processamento, deixa de ser uma boa solução para o usuário. 
