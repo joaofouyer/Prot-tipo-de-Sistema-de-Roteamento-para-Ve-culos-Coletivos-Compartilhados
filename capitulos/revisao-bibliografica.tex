@@ -167,6 +167,50 @@ O \emph{Google} fornece uma vasta gama de ferramentas de geolocalização que co
 
 Esses serviços terão um papel importante no desenvolvimento da plataforma de roteamento de transportes coletivos. O uso dessas ferramentas facilita a entrada de dados na plataforma e gera mais consistência no desenvolvimento deste projeto.
 
+\subsection{DBScan}
+
+
+DBScan (\emph{Density Based Spatial Clustering of Applications with Noise}) \cite{agrupamento}, é um método de agrupamento baseado na densidade dos grupos que serão criados. Este método é definido por dois critérios iniciais, o tamanho do espaço que será considerado para o agrupamento, sendo o raio de distância entre os pontos dado um ponto inicial e o número mínimo de pontos (MINPTS) que devem estar incluídos no grupo\cite[p. 22]{passos-DBSCAN}. Após as definições iniciais, são definidos a vizinhança e fronteira.
+
+A vizinhança \cite[p. 55]{exemplo-DBSCAN} é definida quando a quantidade mínima de pontos pertencente ao grupo que será criado está suficiente em relação ao MINPTS, assim a densidade de cada agrupamento criado é definida.
+
+Um ponto fronteira é aquele que está dentro do raio definido, porém o MINPTS não é suficiente, sendo assim, o grupo não possui o número mínimo de pontos;
+
+A figura \ref{DBScan1-img} representa uma tentativa de agrupamento. No exemplo em questão, o MINPTS deve ser igual a 12.
+
+\begin{figure}[H]
+  \centering
+  \caption{Exemplo DBScan - Tentativa de Agrupamento}
+ \includegraphics[scale=0.7]{imagens/primeira-tentativa-agrupamento.png} \par
+\bigskip
+\label{DBScan1-img}
+   Fonte: {Os Autores, 2019}
+\end{figure}
+
+Os pontos dentro do raio na figura \ref{DBScan1-img} são definidos como pontos fronteira, já que a tentativa de agrupamento a partir do ponto central simbolizado em verde não atingiu o mínimo de pontos para um grupo, assim, ocorrerá uma nova tentativa de agrupamento, modificando o ponto central.
+
+\begin{figure}[H]
+  \centering
+  \caption{Exemplo DBScan - Segunda Tentativa de Agrupamento}
+ \includegraphics[scale=0.7]{imagens/segunda-tentativa-agrupamento.png} \par
+\bigskip
+\label{DBScan2-img}
+   Fonte: {Os Autores, 2019}
+\end{figure}
+
+
+Dado o novo ponto central destacado em amarelo na figura \ref{DBScan2-img}, aplica-se o método DBScan novamente, com um novo raio e um novo número de MINPTS, sendo o novo MINPTS a quantidade de pontos faltantes em relação aos pontos já obtidos na primeira clusterização. 
+
+Os pontos que ficaram fora das tentativas de agrupamento são considerados pontos ruídos, não estando dentro do grupo e nem pertencendo a fronteira.
+
+Este algoritmo age de forma recursiva, tentando realizar os agrupamentos com objetivo de todos os pontos pertencerem à um grupo\cite[p.5]{dbscan-recursivo}. Outro objetivo da recursão é caso o grupo não atinja o número mínimo de pontos, o algoritmo é chamado novamente para que seja possível tornar os pontos fronteiras como pontos centrais e aumentar a cobertura do agrupamento até que o número mínimo de pontos MINPTS seja alcançado e todos os pontos sejam processados.
+
+
+
+
+
+
+
 
 \begin{comment}
 
@@ -217,8 +261,6 @@ A segunda atividade, Análise Preliminar, é uma etapa dentre a análise e o des
 A próxima atividade, Projeto, é a construção do sistema, finalizando a visão dinâmica do sistema e início da visão estática. A preocupação no momento é a eficiência do sistema. Os principais modelos anexados a essa etapa são: Diagrama de Sequência, que fornece detalhes do que será implementado; Refinamento do Modelo de Domínio, onde devem ser inseridas as operações aos objetos de domínio e resolver os problemas reais, como o padrão de projeto que o sistema deve se adequar.
 
 Por fim, a etapa de Implementação, é a atividade de codificação e testes com base no diagrama de Classes, formado a partir do Modelo de Domínio e Diagrama de Sequência, contendo as interações com sistemas externos.
-
-
 
 \section{Trabalhos Relacionados}
 \label{relacionados}
