@@ -1,0 +1,18 @@
+# Table of contents
+
+* [Introdução](README.md)
+* [Configuração](configuracao/README.md)
+  * [Instalação](configuracao/instalacao/README.md)
+    * [On-premise](configuracao/instalacao/on-premise.md)
+    * [Docker Compose](configuracao/instalacao/docker-compose.md)
+    * [AWS EKS](configuracao/instalacao/aws-eks.md)
+    * [Terraform](configuracao/instalacao/terraform.md)
+  * [Azure AD](configuracao/azure-ad.md)
+  * [Parâmetros](configuracao/parametros/README.md)
+    * [Manager API](configuracao/parametros/manager-api.md)
+    * [Lexer](configuracao/parametros/lexer.md)
+    * [Loader](configuracao/parametros/loader.md)
+    * [Scheduler](configuracao/parametros/scheduler.md)
+    * [Webhook](configuracao/parametros/webhook.md)
+    * [Metrics Recorder](configuracao/parametros/metrics-recorder.md)
+    * [Logs Recorder](configuracao/parametros/logs-recorder.md)
